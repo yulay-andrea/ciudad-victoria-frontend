@@ -124,5 +124,8 @@
       }
     }
   },
-  "defaultProject": "ciudad-victoria-frontend"
+  "defaultProject": "ciudad-victoria-frontend",
+  "cli": {
+    "analytics": "aee35f00-28ba-419c-895e-32695bd6fc1a"
+  }
 }
