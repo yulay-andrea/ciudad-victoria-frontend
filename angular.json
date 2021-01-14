@@ -32,7 +32,10 @@
               "node_modules/font-awesome/css/font-awesome.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/bootstrap/js/dist/util.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -97,7 +100,10 @@
               "node_modules/font-awesome/css/font-awesome.min.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/bootstrap/js/dist/util.js"
+            ]
           }
         },
         "lint": {

@@ -209,6 +209,7 @@
 }
 .teams > img {
   width: 100%;
+  height: 300px;
 }
 .team .teams {
   padding: 0px 20px 0;
