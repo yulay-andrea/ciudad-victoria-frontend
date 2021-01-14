@@ -13,4 +13,14 @@ export class PrincipalComponent implements OnInit {
     
   }
 
+  bolsos(event:any){
+
+  }
+  trajesDeportivos(event:any){
+
+  }
+  zapatos(event:any){
+
+  }
+
 }
