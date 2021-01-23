@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatBadgeModule} from '@angular/material/badge';
@@ -34,18 +35,21 @@ import { PrincipalComponent } from './principal/principal.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { AdministracionComponent } from './administracion/administracion.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CrearProductoComponent } from './crear-producto/crear-producto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PrincipalComponent,
     InicioSesionComponent,
-    AdministracionComponent
+    AdministracionComponent,
+    CrearProductoComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     MatIconModule,
     BrowserAnimationsModule,
     MatButtonModule, MatTabsModule, MatInputModule, MatFormFieldModule, MatCheckboxModule, MatSelectModule,

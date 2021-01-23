@@ -2,10 +2,27 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Productos</title>
+    <title>Administracion</title>
 </head>
 <body>
     <div class="contenedor">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">ADMINISTRACION</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+          
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="/crearproducto">Crear Producto</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+              </ul>
+            </div>
+          </nav>
         <div class="form-row">
             <div class="col-4"></div>
             <div class="col-4">
@@ -45,7 +62,14 @@
                                     {{color.descripcion}} - 
                                 </ng-container>
                             </td>
-                            <td>{{producto.disponible}}</td>
+                            <td>
+                                <ng-container *ngIf="producto.disponible">
+                                    SI
+                                </ng-container>
+                                <ng-container *ngIf="!producto.disponible">
+                                    NO
+                                </ng-container>
+                            </td>
                             <td>
                                 <button>
                                     <mat-icon>edit</mat-icon>

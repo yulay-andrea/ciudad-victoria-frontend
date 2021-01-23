@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Producto</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">ADMINISTRACION</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/administracion">Ver Productos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link disabled" href="#">Disabled</a>
+            </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                <h2>CREAR PRODUCTO</h2>
+                <hr>
+                <div class="form-group row">
+                    <label for="contrasena" class="col-sm-3 col-form-label">Nombre:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="contrasena" class="col-sm-3 col-form-label">Descripcion:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="contrasena" class="col-sm-3 col-form-label">Material:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="contrasena" class="col-sm-3 col-form-label">Marca:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="contrasena" class="col-sm-3 col-form-label">Estilo:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="contrasena" class="col-sm-3 col-form-label">Precio:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="contrasena" class="col-sm-3 col-form-label">Garantia:</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <h2>INFO</h2>
+                <hr>
+                <div class="form-group row">
+                    <label for="contrasena" class="col-sm-2 col-form-label">Talla:</label>
+                    <select class="col-sm-3 form-control">
+                        <option selected>38</option>
+                        <option>40</option>
+                    </select>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary">Agg</button>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="contrasena" class="col-sm-2 col-form-label">Colores:</label>
+                    <select class="col-sm-3 form-control">
+                        <option selected>ROJO</option>
+                        <option>BLANCO</option>
+                        <option>NEGRO</option>
+                    </select>
+                    <div class="col-sm-2">
+                        <button class="btn btn-primary">Agg</button>
+                    </div>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="contrasena" class="col-sm-2 col-form-label">Imagenes:</label>
+                    <div class="col-sm-5 custom-file">
+                        <input type="file" class="custom-file-input" id="validatedCustomFile" required>
+                        <label class="custom-file-label" for="validatedCustomFile">Cargar</label>
+                        <div class="invalid-feedback">Imagen Invalida</div>
+                      </div>
+                    <div class="col-sm-5">
+                        <input type="text" class="form-control" disabled>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-8">
+                        <button class="btn btn-sm btn-block btn-success" (click)="crear()">Crear</button>
+                    </div>
+                    <div class="col-sm-2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
