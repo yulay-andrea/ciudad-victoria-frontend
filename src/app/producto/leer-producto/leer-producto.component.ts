@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Producto } from '../modelos/producto';
-import { ProductoService } from '../servicios/producto.service';
+import { Producto } from '../../modelos/producto';
+import { ProductoService } from '../../servicios/producto.service';
 import Swal from 'sweetalert2';
-import * as constantes from '../constantes';
+import * as constantes from '../../constantes';
 
 @Component({
-  selector: 'app-administracion',
-  templateUrl: './administracion.component.html',
-  styleUrls: ['./administracion.component.css']
+  selector: 'app-leer-producto',
+  templateUrl: './leer-producto.component.html',
+  styleUrls: ['./leer-producto.component.css']
 })
-export class AdministracionComponent implements OnInit {
+export class LeerProductoComponent implements OnInit {
 
   constructor(private productoService : ProductoService) { }
 

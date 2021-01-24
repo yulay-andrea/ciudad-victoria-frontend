@@ -1,0 +1,80 @@
+<div class="contenedor">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">VER PRODUCTO</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/crearproducto">Crear Producto</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="form-row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            <label for="Producto" class="col-form-label">Nombre:</label>
+            <input type="text" [(ngModel)]="producto_buscar.nombre" class="form-control">
+        </div>
+        <div class="col-4"></div>
+    </div>
+    <div class="row">
+        <div class="col-12 table-responsive">
+            <h2>PRODUCTOS</h2>
+            <hr>
+            <table class="table table-hover table-bordered" style="font-size: 0.7rem">
+                <thead class="table-active">
+                    <tr>
+                        <th>CODIGO</th>
+                        <th>NOMBRE</th>
+                        <th>MARCA</th>
+                        <th>TALLAS</th>
+                        <th>COLORES</th>
+                        <th>DISPONIBLE</th>
+                        <th>OPCIONES</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let producto of productos">
+                        <td>{{producto.codigo}}</td>
+                        <td>{{producto.nombre}}</td>
+                        <td>{{producto.marca}}</td>
+                        <td>
+                            <ng-container *ngFor="let talla of producto.tallas">
+                                {{talla.descripcion}} -
+                            </ng-container>
+                        </td>
+                        <td>
+                            <ng-container *ngFor="let color of producto.colores">
+                                {{color.descripcion}} -
+                            </ng-container>
+                        </td>
+                        <td>
+                            <ng-container *ngIf="producto.disponible">
+                                SI
+                            </ng-container>
+                            <ng-container *ngIf="!producto.disponible">
+                                NO
+                            </ng-container>
+                        </td>
+                        <td>
+                            <button>
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button>
+                                <mat-icon>check_circle_outline</mat-icon>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

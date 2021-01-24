@@ -10,8 +10,8 @@ export class Producto {
     material: string;
     marca: string;
     estilo: string;
-    talla: string;
     tipo: string;
+    talla: string;
     precio: number;
     garantia: string;
     tallas: Talla[];

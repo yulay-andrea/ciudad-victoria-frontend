@@ -33,16 +33,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PrincipalComponent } from './principal/principal.component';
 import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
-import { AdministracionComponent } from './administracion/administracion.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { CrearProductoComponent } from './crear-producto/crear-producto.component';
+import { LeerProductoComponent } from './producto/leer-producto/leer-producto.component';
+import { CrearProductoComponent } from './producto/crear-producto/crear-producto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PrincipalComponent,
     InicioSesionComponent,
-    AdministracionComponent,
+    LeerProductoComponent,
     CrearProductoComponent
   ],
   imports: [
