@@ -20,6 +20,8 @@ export class CrearProductoComponent implements OnInit {
   coloresForm: string="";
   color: string="";
 
+  imagen: any;
+
   constructor(private productoService : ProductoService ) { }
 
   ngOnInit(): void {
@@ -31,6 +33,7 @@ export class CrearProductoComponent implements OnInit {
       res => {
         if (res!=null){
           Swal.fire(constantes.exito, constantes.exito_crear_producto, constantes.exito_swal);
+          this.crearImagen();
         }
       },
       err => {
@@ -53,6 +56,19 @@ export class CrearProductoComponent implements OnInit {
     this.coloresForm=this.coloresForm+this.colorForm+"|";
   }
 
-  
+  cargarImagen(event: any){
+    let imagenes: FileList=event.target.files;
+    this.imagen = imagenes.item(0);
+  }
+
+  crearImagen(){
+    this.productoService.crearImagen(this.imagen).subscribe(
+      res => {
+      },
+      err => {
+        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+      }
+    );
+  }
 
 }

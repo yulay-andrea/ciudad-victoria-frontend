@@ -80,30 +80,30 @@
                                             PRECIO
                                         </div>
                                         <div class="col-sm" style="text-align: right;">
-                                            {{producto[0].precio}}
+                                            <span class="badge bg-success text-white" style="font-size: medium;">{{producto[0].precio | currency}} </span>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     <div class="row">
-                                        <div class="col-sm" style="text-align: left;">
+                                        <div class="col-sm-4" style="text-align: left;">
                                             TALLA
                                         </div>
-                                        <div class="col-sm" style="text-align: right;">
+                                        <div class="col-sm-8" style="text-align: right;">
                                             <ng-container *ngFor="let talla of producto[0].tallas">
-                                                {{talla.descripcion}} |
+                                                <span class="badge bg-primary text-white separate" style="font-size: medium;">{{talla.descripcion}} </span>
                                             </ng-container>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     <div class="row">
-                                        <div class="col-sm" style="text-align: left;">
+                                        <div class="col-sm-4" style="text-align: left;">
                                             COLORES
                                         </div>
-                                        <div class="col-sm" style="text-align: right;">
+                                        <div class="col-sm-8" style="text-align: right;">
                                             <ng-container *ngFor="let color of producto[0].colores">
-                                                {{color.descripcion}} |
+                                                <span class="badge badge-color-{{color.descripcion}} text-white separate" style="font-size: medium;" >&nbsp;&nbsp;&nbsp;</span>
                                             </ng-container>
                                         </div>
                                     </div>
@@ -126,30 +126,30 @@
                                             PRECIO
                                         </div>
                                         <div class="col-sm" style="text-align: right;">
-                                            {{producto[1].precio}}
+                                            <span class="badge bg-success text-white" style="font-size: medium;">{{producto[1].precio | currency}} </span>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     <div class="row">
-                                        <div class="col-sm" style="text-align: left;">
+                                        <div class="col-sm-4" style="text-align: left;">
                                             TALLA
                                         </div>
-                                        <div class="col-sm" style="text-align: right;">
+                                        <div class="col-sm-8" style="text-align: right;">
                                             <ng-container *ngFor="let talla of producto[1].tallas">
-                                                {{talla.descripcion}} |
+                                                <span class="badge bg-primary text-white separate" style="font-size: medium;">{{talla.descripcion}} </span>
                                             </ng-container>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     <div class="row">
-                                        <div class="col-sm" style="text-align: left;">
+                                        <div class="col-sm-4" style="text-align: left;">
                                             COLORES
                                         </div>
-                                        <div class="col-sm" style="text-align: right;">
+                                        <div class="col-sm-8" style="text-align: right;">
                                             <ng-container *ngFor="let color of producto[1].colores">
-                                                {{color.descripcion}} |
+                                                <span class="badge badge-color-{{color.descripcion}} text-white separate" style="font-size: medium;" >&nbsp;&nbsp;&nbsp;</span>
                                             </ng-container>
                                         </div>
                                     </div>
@@ -172,30 +172,30 @@
                                             PRECIO
                                         </div>
                                         <div class="col-sm" style="text-align: right;">
-                                            {{producto[2].precio}}
+                                            <span class="badge bg-success text-white" style="font-size: medium;">{{producto[2].precio | currency}} </span>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     <div class="row">
-                                        <div class="col-sm" style="text-align: left;">
+                                        <div class="col-sm-4" style="text-align: left;">
                                             TALLA
                                         </div>
-                                        <div class="col-sm" style="text-align: right;">
+                                        <div class="col-sm-8" style="text-align: right;">
                                             <ng-container *ngFor="let talla of producto[2].tallas">
-                                                {{talla.descripcion}} |
+                                                <span class="badge bg-primary text-white separate" style="font-size: medium;">{{talla.descripcion}} </span>
                                             </ng-container>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="list-group-item">
                                     <div class="row">
-                                        <div class="col-sm" style="text-align: left;">
+                                        <div class="col-sm-4" style="text-align: left;">
                                             COLORES
                                         </div>
-                                        <div class="col-sm" style="text-align: right;">
+                                        <div class="col-sm-8" style="text-align: right;">
                                             <ng-container *ngFor="let color of producto[2].colores">
-                                                {{color.descripcion}} |
+                                                <span class="badge badge-color-{{color.descripcion}} text-white separate" style="font-size: medium;" >&nbsp;&nbsp;&nbsp;</span>
                                             </ng-container>
                                         </div>
                                     </div>

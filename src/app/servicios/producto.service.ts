@@ -73,4 +73,15 @@ export class ProductoService {
       })
     );
   }
+
+  crearImagen(imagen: File): Observable<boolean> {
+    const formData: FormData = new FormData();
+    formData.append('imagen', imagen, imagen.name);
+    return this.http.post(environment.host + util.ruta + util.producto + '/imagen', formData, util.optionsImagen).pipe(
+      map(response => response as any),
+      catchError(err => {
+        return throwError(err);
+      })
+    );
+  }
 }
