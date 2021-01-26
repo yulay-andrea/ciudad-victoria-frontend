@@ -67,7 +67,12 @@
                 <div class="card-group">
                     <ng-container *ngIf="producto.length>0">
                         <div class="card col-sm-4">
-                            <img class="card-img-top" src="/assets/imgsize.svg" alt="Card image cap">
+                            <ng-container *ngIf="producto[0].imagenes.length==0">
+                                <img class="card-img-top" src="/assets/imgsize.svg" alt="Card image cap">
+                            </ng-container>
+                            <ng-container *ngIf="producto[0].imagenes.length>0">
+                                <img class="card-img-top" height="400px" src="{{prefijoUrlImagenes+producto[0].imagenes[0].ruta}}" alt="Card image cap">
+                            </ng-container>
                             <div class="card-body">
                                 <h2 class="card-title">{{producto[0].nombre}}</h2>
                                 <p class="card-text">{{producto[0].descripcion}}</p>
@@ -113,7 +118,12 @@
                     </ng-container>
                     <ng-container *ngIf="producto.length>1">
                         <div class="card col-sm-4">
-                            <img class="card-img-top" src="/assets/imgsize.svg" alt="Card image cap">
+                            <ng-container *ngIf="producto[1].imagenes.length==0">
+                                <img class="card-img-top" src="/assets/imgsize.svg" alt="Card image cap">
+                            </ng-container>
+                            <ng-container *ngIf="producto[1].imagenes.length>0">
+                                <img class="card-img-top" height="400px" src="{{prefijoUrlImagenes+producto[1].imagenes[0].ruta}}" alt="Card image cap">
+                            </ng-container>
                             <div class="card-body">
                                 <h2 class="card-title">{{producto[1].nombre}}</h2>
                                 <p class="card-text">{{producto[1].descripcion}}</p>
@@ -159,7 +169,12 @@
                     </ng-container>
                     <ng-container *ngIf="producto.length>2">
                         <div class="card col-sm-4">
-                            <img class="card-img-top" src="/assets/imgsize.svg" alt="Card image cap">
+                            <ng-container *ngIf="producto[2].imagenes.length==0">
+                                <img class="card-img-top" src="/assets/imgsize.svg" alt="Card image cap">
+                            </ng-container>
+                            <ng-container *ngIf="producto[2].imagenes.length>0">
+                                <img class="card-img-top" height="400px" src="{{prefijoUrlImagenes+producto[2].imagenes[0].ruta}}" alt="Card image cap">
+                            </ng-container>
                             <div class="card-body">
                                 <h2 class="card-title">{{producto[2].nombre}}</h2>
                                 <p class="card-text">{{producto[2].descripcion}}</p>
@@ -206,6 +221,7 @@
                 </div>
             </div>
         </div>
+        <br>
     </ng-container>
     <br>
     <br>

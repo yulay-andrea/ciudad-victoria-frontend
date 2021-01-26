@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Color } from 'src/app/modelos/color';
+import { Imagen } from 'src/app/modelos/imagen';
 import { Producto } from 'src/app/modelos/producto';
 import { Talla } from 'src/app/modelos/talla';
 import { ProductoService } from 'src/app/servicios/producto.service';
@@ -19,7 +20,6 @@ export class CrearProductoComponent implements OnInit {
   colorForm: string="";
   coloresForm: string="";
   color: string="";
-
   imagen: any;
 
   constructor(private productoService : ProductoService ) { }
@@ -33,7 +33,8 @@ export class CrearProductoComponent implements OnInit {
       res => {
         if (res!=null){
           Swal.fire(constantes.exito, constantes.exito_crear_producto, constantes.exito_swal);
-          this.crearImagen();
+          console.log(res.id);
+          this.crearImagen(res.id);
         }
       },
       err => {
@@ -58,11 +59,11 @@ export class CrearProductoComponent implements OnInit {
 
   cargarImagen(event: any){
     let imagenes: FileList=event.target.files;
-    this.imagen = imagenes.item(0);
+    this.imagen=imagenes.item(0);
   }
 
-  crearImagen(){
-    this.productoService.crearImagen(this.imagen).subscribe(
+  crearImagen(productoId: number){
+    this.productoService.crearImagen(this.imagen, productoId).subscribe(
       res => {
       },
       err => {

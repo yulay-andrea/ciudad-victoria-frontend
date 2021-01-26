@@ -3,6 +3,7 @@ import { Producto } from '../modelos/producto';
 import { ProductoService } from '../servicios/producto.service';
 import Swal from 'sweetalert2';
 import * as constantes from '../constantes';
+import { environment } from './../../environments/environment';
 
 @Component({
   selector: 'app-principal',
@@ -14,6 +15,8 @@ export class PrincipalComponent implements OnInit {
   productos: Producto[]=[];
 
   productosEnc: any[]=[];
+
+  prefijoUrlImagenes=environment.prefijo_url_imagenes;
   
   constructor(private productoService : ProductoService) { }
 
