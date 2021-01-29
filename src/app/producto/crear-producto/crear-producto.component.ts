@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Color } from 'src/app/modelos/color';
 import { Imagen } from 'src/app/modelos/imagen';
 import { Producto } from 'src/app/modelos/producto';
 import { Talla } from 'src/app/modelos/talla';
 import { ProductoService } from 'src/app/servicios/producto.service';
+import { SesionService } from 'src/app/servicios/sesion.service';
 import Swal from 'sweetalert2';
 import * as constantes from '../../constantes';
 
@@ -22,9 +24,18 @@ export class CrearProductoComponent implements OnInit {
   color: string="";
   imagen: any;
 
-  constructor(private productoService : ProductoService ) { }
+  constructor(private productoService : ProductoService, private sesionService: SesionService,
+    private router: Router ) { }
 
   ngOnInit(): void {
+    this.validarSesion();
+  }
+
+  validarSesion(){
+    let usuarioActivo=this.sesionService.clienteLogueado();
+    if(!usuarioActivo){
+      this.navegarIndex();
+    }
   }
 
   crear(){
@@ -70,6 +81,10 @@ export class CrearProductoComponent implements OnInit {
         Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
       }
     );
+  }
+
+  navegarIndex() {
+    this.router.navigate(['/index']);
   }
 
 }

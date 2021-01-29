@@ -3,6 +3,8 @@ import { Producto } from '../../modelos/producto';
 import { ProductoService } from '../../servicios/producto.service';
 import Swal from 'sweetalert2';
 import * as constantes from '../../constantes';
+import { SesionService } from 'src/app/servicios/sesion.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-leer-producto',
@@ -11,13 +13,14 @@ import * as constantes from '../../constantes';
 })
 export class LeerProductoComponent implements OnInit {
 
-  constructor(private productoService : ProductoService) { }
+  constructor(private sesionService: SesionService, private productoService : ProductoService,
+    private router: Router ) { }
 
   productos: Producto[]=[];
   producto_buscar: Producto=new Producto();
 
   ngOnInit(): void {
-
+    this.validarSesion();
     this.productoService.consultar().subscribe(
       res => {
         this.productos = res
@@ -34,6 +37,17 @@ export class LeerProductoComponent implements OnInit {
 
   nombre_buscar(){
     
+  }
+
+  validarSesion(){
+    let usuarioActivo=this.sesionService.clienteLogueado();
+    if(!usuarioActivo){
+      this.navegarIndex();
+    }
+  }
+
+  navegarIndex() {
+    this.router.navigate(['/index']);
   }
 
 }

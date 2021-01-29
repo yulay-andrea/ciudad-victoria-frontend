@@ -21,6 +21,9 @@
                             <a class="nav-link" href="#">TRAJES DEPORTIVOS</a>
                         </li>
                     </ul>
+                    <form class="d-flex">
+                        <a class="nav-link" type="button" href="/iniciar-sesion">INICIAR SESION</a>
+                    </form>
                 </div>
             </nav>
         </div>
@@ -67,7 +70,8 @@
                                 <img class="card-img-top" src="/assets/imgsize.svg" alt="Card image cap">
                             </ng-container>
                             <ng-container *ngIf="producto[0].imagenes.length>0">
-                                <img class="card-img-top" height="400px" src="{{prefijoUrlImagenes+producto[0].imagenes[0].ruta}}" alt="Card image cap">
+                                <img class="card-img-top" height="400px"
+                                    src="{{prefijoUrlImagenes+producto[0].imagenes[0].ruta}}" alt="Card image cap">
                             </ng-container>
                             <div class="card-body">
                                 <h2 class="card-title">{{producto[0].nombre}}</h2>
@@ -81,7 +85,8 @@
                                             PRECIO
                                         </div>
                                         <div class="col-sm" style="text-align: right;">
-                                            <span class="badge bg-success text-white" style="font-size: medium;">{{producto[0].precio | currency}} </span>
+                                            <span class="badge bg-success text-white"
+                                                style="font-size: medium;">{{producto[0].precio | currency}} </span>
                                         </div>
                                     </div>
                                 </li>
@@ -92,7 +97,8 @@
                                         </div>
                                         <div class="col-sm-8" style="text-align: right;">
                                             <ng-container *ngFor="let talla of producto[0].tallas">
-                                                <span class="badge bg-primary text-white separate" style="font-size: medium;">{{talla.descripcion}} </span>
+                                                <span class="badge bg-primary text-white separate"
+                                                    style="font-size: medium;">{{talla.descripcion}} </span>
                                             </ng-container>
                                         </div>
                                     </div>
@@ -104,7 +110,9 @@
                                         </div>
                                         <div class="col-sm-8" style="text-align: right;">
                                             <ng-container *ngFor="let color of producto[0].colores">
-                                                <span class="badge badge-color-{{color.descripcion}} text-white separate" style="font-size: medium;" >&nbsp;&nbsp;&nbsp;</span>
+                                                <span
+                                                    class="badge badge-color-{{color.descripcion}} text-white separate"
+                                                    style="font-size: medium;">&nbsp;&nbsp;&nbsp;</span>
                                             </ng-container>
                                         </div>
                                     </div>
@@ -118,7 +126,8 @@
                                 <img class="card-img-top" src="/assets/imgsize.svg" alt="Card image cap">
                             </ng-container>
                             <ng-container *ngIf="producto[1].imagenes.length>0">
-                                <img class="card-img-top" height="400px" src="{{prefijoUrlImagenes+producto[1].imagenes[0].ruta}}" alt="Card image cap">
+                                <img class="card-img-top" height="400px"
+                                    src="{{prefijoUrlImagenes+producto[1].imagenes[0].ruta}}" alt="Card image cap">
                             </ng-container>
                             <div class="card-body">
                                 <h2 class="card-title">{{producto[1].nombre}}</h2>
@@ -132,7 +141,8 @@
                                             PRECIO
                                         </div>
                                         <div class="col-sm" style="text-align: right;">
-                                            <span class="badge bg-success text-white" style="font-size: medium;">{{producto[1].precio | currency}} </span>
+                                            <span class="badge bg-success text-white"
+                                                style="font-size: medium;">{{producto[1].precio | currency}} </span>
                                         </div>
                                     </div>
                                 </li>
@@ -143,7 +153,8 @@
                                         </div>
                                         <div class="col-sm-8" style="text-align: right;">
                                             <ng-container *ngFor="let talla of producto[1].tallas">
-                                                <span class="badge bg-primary text-white separate" style="font-size: medium;">{{talla.descripcion}} </span>
+                                                <span class="badge bg-primary text-white separate"
+                                                    style="font-size: medium;">{{talla.descripcion}} </span>
                                             </ng-container>
                                         </div>
                                     </div>
@@ -155,7 +166,9 @@
                                         </div>
                                         <div class="col-sm-8" style="text-align: right;">
                                             <ng-container *ngFor="let color of producto[1].colores">
-                                                <span class="badge badge-color-{{color.descripcion}} text-white separate" style="font-size: medium;" >&nbsp;&nbsp;&nbsp;</span>
+                                                <span
+                                                    class="badge badge-color-{{color.descripcion}} text-white separate"
+                                                    style="font-size: medium;">&nbsp;&nbsp;&nbsp;</span>
                                             </ng-container>
                                         </div>
                                     </div>
@@ -169,7 +182,8 @@
                                 <img class="card-img-top" src="/assets/imgsize.svg" alt="Card image cap">
                             </ng-container>
                             <ng-container *ngIf="producto[2].imagenes.length>0">
-                                <img class="card-img-top" height="400px" src="{{prefijoUrlImagenes+producto[2].imagenes[0].ruta}}" alt="Card image cap">
+                                <img class="card-img-top" height="400px"
+                                    src="{{prefijoUrlImagenes+producto[2].imagenes[0].ruta}}" alt="Card image cap">
                             </ng-container>
                             <div class="card-body">
                                 <h2 class="card-title">{{producto[2].nombre}}</h2>
@@ -183,7 +197,8 @@
                                             PRECIO
                                         </div>
                                         <div class="col-sm" style="text-align: right;">
-                                            <span class="badge bg-success text-white" style="font-size: medium;">{{producto[2].precio | currency}} </span>
+                                            <span class="badge bg-success text-white"
+                                                style="font-size: medium;">{{producto[2].precio | currency}} </span>
                                         </div>
                                     </div>
                                 </li>
@@ -194,7 +209,8 @@
                                         </div>
                                         <div class="col-sm-8" style="text-align: right;">
                                             <ng-container *ngFor="let talla of producto[2].tallas">
-                                                <span class="badge bg-primary text-white separate" style="font-size: medium;">{{talla.descripcion}} </span>
+                                                <span class="badge bg-primary text-white separate"
+                                                    style="font-size: medium;">{{talla.descripcion}} </span>
                                             </ng-container>
                                         </div>
                                     </div>
@@ -206,7 +222,9 @@
                                         </div>
                                         <div class="col-sm-8" style="text-align: right;">
                                             <ng-container *ngFor="let color of producto[2].colores">
-                                                <span class="badge badge-color-{{color.descripcion}} text-white separate" style="font-size: medium;" >&nbsp;&nbsp;&nbsp;</span>
+                                                <span
+                                                    class="badge badge-color-{{color.descripcion}} text-white separate"
+                                                    style="font-size: medium;">&nbsp;&nbsp;&nbsp;</span>
                                             </ng-container>
                                         </div>
                                     </div>

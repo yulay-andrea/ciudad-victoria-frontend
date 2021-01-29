@@ -4,6 +4,8 @@ import { UsuarioService } from '../servicios/usuario.service';
 import * as constantes from '../constantes';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { SesionService } from '../servicios/sesion.service';
+import { Sesion } from '../modelos/sesion';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -12,28 +14,34 @@ import { Router } from '@angular/router';
 })
 export class InicioSesionComponent implements OnInit {
 
-  public usuario: Usuario=new Usuario();
+  sesion: Sesion=new Sesion();
+  identificacion: string="";
+  contrasena: string="";
 
-  constructor(private usuarioService: UsuarioService, private router: Router) { }
+  constructor(private usuarioService: UsuarioService, private sesionService: SesionService, private router: Router) { }
 
   ngOnInit(): void {
   }
 
-  iniciarSesion(){
-    this.usuarioService.inciarSesion(this.usuario).subscribe(
+  iniciarSesion() {
+    this.sesion.usuario.identificacion=this.identificacion;
+    this.sesion.usuario.contrasena=this.contrasena;
+    this.sesionService.crear(this.sesion).subscribe(
       res => {
-        console.log(res);
-        if(res!=null){
-          this.navegarExitoso();
-        } else{
-          Swal.fire(constantes.error, constantes.error_iniciosesion, constantes.error_swal);
-        }
+        this.sesion=res;
+        this.sesionService.setSesion(this.sesion);
+        Swal.fire(constantes.exito, constantes.exito_iniciar_sesion, constantes.exito_swal);
+        this.navegarExitoso();
       },
-      error => Swal.fire(constantes.error, error.error.mensaje, constantes.error_swal),
+      error => Swal.fire(constantes.error, constantes.error_iniciar_sesion, constantes.error_swal),
+      () => this.navegarIndex()
     );
   }
 
   navegarExitoso() {
-    this.router.navigate(['/administracion']);
+    this.router.navigate(['/crear-producto']);
+  }
+  navegarIndex() {
+    this.router.navigate(['/index']);
   }
 }

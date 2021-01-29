@@ -6,4 +6,5 @@ export const exito='Exito';
 export const exito_crear_producto='Exito al crear el producto';
 export const exito_crear_imagen='Exito al crear la imagen';
 
-export const error_iniciosesion='Error en usuario o contraseña';
+export const exito_iniciar_sesion='Exito al iniciar sesion';
+export const error_iniciar_sesion='Error en usuario o contraseña';
