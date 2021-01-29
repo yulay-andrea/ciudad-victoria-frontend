@@ -10,9 +10,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="/leer-producto">Ver Productos</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-            </li>
         </ul>
     </div>
 </nav>
@@ -110,9 +107,11 @@
                         <option>43</option>
                     </select>
                 </div>
+                <br>
                 <div class="col-sm-2">
-                    <button (click)="crearTalla()" class="btn btn-primary">Agg</button>
+                    <button (click)="crearTalla()" class="btn btn-sm btn-block btn-primary">Agregar Talla</button>
                 </div>
+                <br>
                 <div class="col-sm-3">
                     <input type="text" [(ngModel)]="tallasForm" class="form-control form-control-sm" disabled>
                 </div>
@@ -130,9 +129,11 @@
                         <option>BEIGE</option>
                     </select>
                 </div>
+                <br>
                 <div class="col-sm-2">
-                    <button (click)="crearColor()" class="btn btn-primary">Agg</button>
+                    <button (click)="crearColor()" class="btn btn-sm btn-block btn-primary">Agregar Color</button>
                 </div>
+                <br>
                 <div class="col-sm-3">
                     <input type="text" [(ngModel)]="coloresForm" class="form-control form-control-sm" disabled>
                 </div>
@@ -153,5 +154,20 @@
             </div>
         </div>
         <div class="col-sm-3"></div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-sm">
+            <footer class="text-muted">
+                <div class="container">
+                    <p class="float-right">
+                        <a href="#">Back to top</a>
+                    </p>
+                    <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+                    <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our <a
+                            href="../../getting-started/">getting started guide</a>.</p>
+                </div>
+            </footer>
+        </div>
     </div>
 </div>
