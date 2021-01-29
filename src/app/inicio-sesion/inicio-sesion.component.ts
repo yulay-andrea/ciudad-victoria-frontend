@@ -26,6 +26,7 @@ export class InicioSesionComponent implements OnInit {
   iniciarSesion() {
     this.sesion.usuario.identificacion=this.identificacion;
     this.sesion.usuario.contrasena=this.contrasena;
+    console.log(this.sesion);
     this.sesionService.crear(this.sesion).subscribe(
       res => {
         this.sesion=res;
@@ -33,8 +34,7 @@ export class InicioSesionComponent implements OnInit {
         Swal.fire(constantes.exito, constantes.exito_iniciar_sesion, constantes.exito_swal);
         this.navegarExitoso();
       },
-      error => Swal.fire(constantes.error, constantes.error_iniciar_sesion, constantes.error_swal),
-      () => this.navegarIndex()
+      error => Swal.fire(constantes.error, constantes.error_iniciar_sesion, constantes.error_swal)
     );
   }
 

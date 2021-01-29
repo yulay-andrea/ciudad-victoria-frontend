@@ -11,19 +11,16 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/crear-producto">Crear Producto</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">Disabled</a>
-                </li>
             </ul>
         </div>
     </nav>
-    <div class="form-row">
-        <div class="col-4"></div>
-        <div class="col-4">
-            <label for="Producto" class="col-form-label">Nombre:</label>
-            <input type="text" [(ngModel)]="producto_buscar.nombre" class="form-control">
+    <div class="row">
+        <div class="col-sm-4"></div>
+        <div class="col-sm-4">
+            <label for="Nombre">Nombre:</label>
+            <input type="text" [(ngModel)]="producto_buscar.nombre" class="form-control form-control-sm">
         </div>
-        <div class="col-4"></div>
+        <div class="col-sm-4"></div>
     </div>
     <br>
     <div class="row">
