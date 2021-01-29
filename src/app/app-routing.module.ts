@@ -8,9 +8,9 @@ import { PrincipalComponent } from './principal/principal.component';
 const routes: Routes = [
   { path: '',   redirectTo: '/index', pathMatch: 'full' },
   { path: 'index', component: PrincipalComponent},
-  { path: 'iniciosesion', component: InicioSesionComponent},
-  { path: 'leerproducto', component: LeerProductoComponent},
-  { path: 'crearproducto', component: CrearProductoComponent}
+  { path: 'iniciar-sesion', component: InicioSesionComponent},
+  { path: 'leer-producto', component: LeerProductoComponent},
+  { path: 'crear-producto', component: CrearProductoComponent}
 ];
 
 @NgModule({

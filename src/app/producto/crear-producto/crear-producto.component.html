@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">ADMINISTRACION</a>
+    <a class="navbar-brand" href="#">PRODUCTO</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/leerproducto">Ver Productos</a>
+                <a class="nav-link" href="/leer-producto">Ver Productos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#">Disabled</a>
@@ -19,43 +19,49 @@
 <br>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-6">
+        <div class="col-sm-3"></div>
+        <div class="col-sm">
             <h2>CREAR PRODUCTO</h2>
             <hr>
             <div class="form-group row">
                 <label for="contrasena" class="col-sm-3 col-form-label">Nombre:</label>
                 <div class="col-sm-9">
-                    <input type="text" [(ngModel)]="producto.nombre" oninput="this.value = this.value.toUpperCase()" class="form-control">
+                    <input type="text" [(ngModel)]="producto.nombre" oninput="this.value = this.value.toUpperCase()"
+                        class="form-control form-control-sm">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="contrasena" class="col-sm-3 col-form-label">Descripcion:</label>
                 <div class="col-sm-9">
-                    <input type="text" [(ngModel)]="producto.descripcion" oninput="this.value = this.value.toUpperCase()" class="form-control">
+                    <input type="text" [(ngModel)]="producto.descripcion"
+                        oninput="this.value = this.value.toUpperCase()" class="form-control form-control-sm">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="contrasena" class="col-sm-3 col-form-label">Material:</label>
                 <div class="col-sm-9">
-                    <input type="text" [(ngModel)]="producto.material" oninput="this.value = this.value.toUpperCase()" class="form-control">
+                    <input type="text" [(ngModel)]="producto.material" oninput="this.value = this.value.toUpperCase()"
+                        class="form-control form-control-sm">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="contrasena" class="col-sm-3 col-form-label">Marca:</label>
                 <div class="col-sm-9">
-                    <input type="text" [(ngModel)]="producto.marca" oninput="this.value = this.value.toUpperCase()" class="form-control">
+                    <input type="text" [(ngModel)]="producto.marca" oninput="this.value = this.value.toUpperCase()"
+                        class="form-control form-control-sm">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="contrasena" class="col-sm-3 col-form-label">Estilo:</label>
                 <div class="col-sm-9">
-                    <input type="text" [(ngModel)]="producto.estilo" oninput="this.value = this.value.toUpperCase()" class="form-control">
+                    <input type="text" [(ngModel)]="producto.estilo" oninput="this.value = this.value.toUpperCase()"
+                        class="form-control form-control-sm">
                 </div>
             </div>
             <div class="form-group row">
                 <label for="contrasena" class="col-sm-3 col-form-label">Tipo:</label>
                 <div class="col-sm-9">
-                    <select class="form-control" [(ngModel)]="producto.tipo">
+                    <select class="form-control form-control-sm" [(ngModel)]="producto.tipo">
                         <option value="ZAPATOS">ZAPATOS</option>
                         <option value="BOLSOS">BOLSOS</option>
                         <option value="TRAJES DEPORTIVOS">TRAJES DEPORTIVOS</option>
@@ -65,89 +71,87 @@
             <div class="form-group row">
                 <label for="contrasena" class="col-sm-3 col-form-label">Precio:</label>
                 <div class="col-sm-9">
-                    <input type="text" [(ngModel)]="producto.precio" class="form-control">
+                    <input type="text" [(ngModel)]="producto.precio" class="form-control form-control-sm">
                 </div>
             </div>
             <div class="form-group row">
-                <label for="contrasena" class="col-sm-3 col-form-label">Garantia:</label>
+                <label class="col-sm-3 col-form-label">Garantia:</label>
                 <div class="col-sm-9">
-                    <input type="text" [(ngModel)]="producto.garantia" oninput="this.value = this.value.toUpperCase()" class="form-control">
+                    <input type="text" [(ngModel)]="producto.garantia" oninput="this.value = this.value.toUpperCase()"
+                        class="form-control form-control-sm">
                 </div>
             </div>
-        </div>
-        <div class="col-6">
-            <h2>INFO</h2>
-            <hr>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Talla:</label>
-                <select [(ngModel)]="tallaForm" class="col-sm-3 form-control">
-                    <option>21</option>
-                    <option>22</option>
-                    <option>23</option>
-                    <option>24</option>
-                    <option>25</option>
-                    <option>26</option>
-                    <option>27</option>
-                    <option>28</option>
-                    <option>29</option>
-                    <option>30</option>
-                    <option>31</option>
-                    <option>32</option>
-                    <option>33</option>
-                    <option>34</option>
-                    <option>35</option>
-                    <option>36</option>
-                    <option>37</option>
-                    <option>38</option>
-                    <option>39</option>
-                    <option>40</option>
-                    <option>41</option>
-                    <option>42</option>
-                    <option>43</option>
-                </select>
+                <label class="col-sm-3 col-form-label">Talla:</label>
+                <div class="col-sm-4">
+                    <select [(ngModel)]="tallaForm" class="form-control form-control-sm">
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+                        <option>32</option>
+                        <option>33</option>
+                        <option>34</option>
+                        <option>35</option>
+                        <option>36</option>
+                        <option>37</option>
+                        <option>38</option>
+                        <option>39</option>
+                        <option>40</option>
+                        <option>41</option>
+                        <option>42</option>
+                        <option>43</option>
+                    </select>
+                </div>
                 <div class="col-sm-2">
                     <button (click)="crearTalla()" class="btn btn-primary">Agg</button>
                 </div>
-                <div class="col-sm-5">
-                    <input type="text" [(ngModel)]="tallasForm" class="form-control" disabled>
+                <div class="col-sm-3">
+                    <input type="text" [(ngModel)]="tallasForm" class="form-control form-control-sm" disabled>
                 </div>
             </div>
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Colores:</label>
-                <select [(ngModel)]="colorForm" class="col-sm-3 form-control">
-                    <option>ROJO</option>
-                    <option>BLANCO</option>
-                    <option>NEGRO</option>
-                    <option>VERDE</option>
-                    <option>AZUL OSCURO</option>
-                    <option>GRIS</option>
-                    <option>BEIGE</option>
-                </select>
+                <label class="col-sm-3 col-form-label">Colores:</label>
+                <div class="col-sm-4">
+                    <select [(ngModel)]="colorForm" class="form-control form-control-sm">
+                        <option>ROJO</option>
+                        <option>BLANCO</option>
+                        <option>NEGRO</option>
+                        <option>VERDE</option>
+                        <option>AZUL OSCURO</option>
+                        <option>GRIS</option>
+                        <option>BEIGE</option>
+                    </select>
+                </div>
                 <div class="col-sm-2">
                     <button (click)="crearColor()" class="btn btn-primary">Agg</button>
                 </div>
-                <div class="col-sm-5">
-                    <input type="text" [(ngModel)]="coloresForm" class="form-control" disabled>
+                <div class="col-sm-3">
+                    <input type="text" [(ngModel)]="coloresForm" class="form-control form-control-sm" disabled>
                 </div>
             </div>
             <div class="form-group row">
-                <label for="contrasena" class="col-sm-2 col-form-label">Imagenes:</label>
-                <div class="col-sm-5 custom-file">
-                    <input type="file" id="imagen" name="imagen" (change)="cargarImagen($event)" class="custom-file-input" id="validatedCustomFile" required>
-                    <label class="custom-file-label" for="validatedCustomFile">Cargar</label>
-                    <div class="invalid-feedback">Imagen Invalida</div>
+                <label class="col-sm-3 col-form-label">Imagenes:</label>
+                <div class="col-sm-6">
+                    <input type="file" id="imagen" name="imagen" (change)="cargarImagen($event)" required>
                 </div>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" disabled>
+                <div class="col-sm-3">
+                    <input type="text" class="form-control form-control-sm" disabled>
                 </div>
             </div>
             <div class="form-group row">
-                <div class="col-sm-2"></div>
-                <div class="col-sm-8">
+                <div class="col-sm">
                     <button class="btn btn-sm btn-block btn-success" (click)="crear()">Crear</button>
                 </div>
-                <div class="col-sm-2"></div>
             </div>
         </div>
+        <div class="col-sm-3"></div>
     </div>
 </div>
