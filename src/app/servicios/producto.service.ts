@@ -40,16 +40,16 @@ export class ProductoService {
       })).toPromise();
   }
 
-  obtener(producto_id: number): Observable<Producto> {
-    return this.http.get<Producto>(environment.host + util.ruta + util.producto + '/' + producto_id, util.options).pipe(
+  obtener(id: number): Observable<Producto> {
+    return this.http.get<Producto>(environment.host + util.ruta + util.producto + '/' + id, util.options).pipe(
       map(response => response as Producto),
       catchError(err => {
         return throwError(err);
       }));
   }
 
-  async obtenerAsync(producto_id: number): Promise<Producto> {
-    return await this.http.get<Producto>(environment.host + util.ruta + util.producto + '/' + producto_id, util.options).pipe(
+  async obtenerAsync(id: number): Promise<Producto> {
+    return await this.http.get<Producto>(environment.host + util.ruta + util.producto + '/' + id, util.options).pipe(
       map(response => response as Producto),
       catchError(err => {
         return throwError(err);
@@ -65,8 +65,8 @@ export class ProductoService {
     );
   }
 
-  eliminar(producto: Producto): Observable<Producto> {
-    return this.http.delete(environment.host + util.ruta + util.producto + '/' + producto.id, util.options).pipe(
+  eliminar(id: number): Observable<Producto> {
+    return this.http.delete(environment.host + util.ruta + util.producto + '/' + id, util.options).pipe(
       map(response => response as Producto),
       catchError(err => {
         return throwError(err);
@@ -74,10 +74,10 @@ export class ProductoService {
     );
   }
 
-  crearImagen(imagen: File, productoId: number): Observable<boolean> {
+  crearImagen(imagen: File, id: number): Observable<boolean> {
     const formData: FormData = new FormData();
     formData.append('imagen', imagen, imagen.name);
-    return this.http.post(environment.host + util.ruta + util.producto + '/imagen' + '/' + productoId, formData, util.optionsImagen).pipe(
+    return this.http.post(environment.host + util.ruta + util.producto + '/imagen' + '/' + id, formData, util.optionsImagen).pipe(
       map(response => response as any),
       catchError(err => {
         return throwError(err);

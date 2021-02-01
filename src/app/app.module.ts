@@ -36,6 +36,8 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LeerProductoComponent } from './producto/leer-producto/leer-producto.component';
 import { CrearProductoComponent } from './producto/crear-producto/crear-producto.component';
+import { ResumenPedidoComponent } from './resumen-pedido/resumen-pedido.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { CrearProductoComponent } from './producto/crear-producto/crear-producto
     PrincipalComponent,
     InicioSesionComponent,
     LeerProductoComponent,
-    CrearProductoComponent
+    CrearProductoComponent,
+    ResumenPedidoComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,7 @@ import { CrearProductoComponent } from './producto/crear-producto/crear-producto
     MatButtonModule, MatTabsModule, MatInputModule, MatFormFieldModule, MatCheckboxModule, MatSelectModule,
     MatAutocompleteModule, MatCardModule, MatExpansionModule, MatDividerModule, MatIconModule, MatStepperModule,
     MatDatepickerModule, MatNativeDateModule, MatTableModule, MatSortModule, MatPaginatorModule, MatToolbarModule,
-    MatSidenavModule, MatMenuModule, MatListModule, MatGridListModule, MatBadgeModule, MatDialogModule,
+    MatSidenavModule, MatMenuModule, MatListModule, MatGridListModule, MatBadgeModule, MatDialogModule, NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
