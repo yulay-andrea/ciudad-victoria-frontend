@@ -4,14 +4,12 @@ import { Talla } from "./talla";
 
 export class Producto {
     id: number;
-    codigo: string;
     nombre: string;
     descripcion: string; 
     material: string;
     marca: string;
     estilo: string;
     tipo: string;
-    talla: string;
     precio: number;
     garantia: string;
     tallas: Talla[];
@@ -23,11 +21,9 @@ export class Producto {
         this.id=0;
         this.nombre="";
         this.descripcion="";
-        this.codigo="";
         this.material="";
         this.marca="";
         this.estilo="";
-        this.talla="";
         this.tipo="";
         this.precio=0;
         this.garantia="";
