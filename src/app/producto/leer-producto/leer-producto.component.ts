@@ -17,7 +17,7 @@ export class LeerProductoComponent implements OnInit {
     private router: Router ) { }
 
   productos: Producto[]=[];
-  producto_buscar: Producto=new Producto();
+  productoBuscar: Producto=new Producto();
 
   ngOnInit(): void {
     this.validarSesion();
@@ -35,7 +35,7 @@ export class LeerProductoComponent implements OnInit {
 
   }
 
-  nombre_buscar(){
+  buscar(){
     
   }
 
@@ -48,6 +48,12 @@ export class LeerProductoComponent implements OnInit {
 
   navegarIndex() {
     this.router.navigate(['/index']);
+  }
+
+  cerrarSesion(event:any){
+    if (event!=null)
+      event.preventDefault();
+    this.sesionService.cerrarSesion();
   }
 
 }

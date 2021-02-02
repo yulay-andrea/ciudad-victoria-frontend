@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, catchError } from 'rxjs/operators';
-import { of, Observable, throwError, BehaviorSubject } from 'rxjs';
+import { of, Observable, throwError, BehaviorSubject, Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import * as util from '../util';
 import { environment } from '../../environments/environment';
@@ -11,16 +11,8 @@ import { Pedido } from '../modelos/pedido';
   providedIn: 'root'
 })
 export class PedidoService {
-
-  private messageSource = new BehaviorSubject(new Pedido());
-  currentMessage = this.messageSource.asObservable();
-
+  
   constructor(private http: HttpClient, private router: Router) { }
-
-  enviar(pedido: Pedido) {
-    this.messageSource.next(pedido);
-  }
-
   crear(pedido: Pedido): Observable<Pedido> {
     return this.http.post(environment.host + util.ruta + util.pedido, pedido, util.options).pipe(
       map(response => response as Pedido),

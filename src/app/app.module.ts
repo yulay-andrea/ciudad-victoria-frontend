@@ -38,6 +38,8 @@ import { LeerProductoComponent } from './producto/leer-producto/leer-producto.co
 import { CrearProductoComponent } from './producto/crear-producto/crear-producto.component';
 import { ResumenPedidoComponent } from './resumen-pedido/resumen-pedido.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { PedidoService } from './servicios/pedido.service';
+import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -60,7 +62,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     MatDatepickerModule, MatNativeDateModule, MatTableModule, MatSortModule, MatPaginatorModule, MatToolbarModule,
     MatSidenavModule, MatMenuModule, MatListModule, MatGridListModule, MatBadgeModule, MatDialogModule, NgbModule,
   ],
-  providers: [],
+  providers: [PedidoService, {
+    provide: LocationStrategy,
+    useClass: PathLocationStrategy
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

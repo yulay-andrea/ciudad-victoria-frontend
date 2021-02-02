@@ -87,4 +87,10 @@ export class CrearProductoComponent implements OnInit {
     this.router.navigate(['/index']);
   }
 
+  cerrarSesion(event:any){
+    if (event!=null)
+      event.preventDefault();
+    this.sesionService.cerrarSesion();
+  }
+
 }

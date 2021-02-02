@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import * as util from '../util';
 import { environment } from '../../environments/environment';
 import { Sesion } from '../modelos/sesion';
+import { Pedido } from '../modelos/pedido';
 
 @Injectable({
   providedIn: 'root'
@@ -39,5 +40,19 @@ export class SesionService {
 
   cerrarSesion(){
     sessionStorage.removeItem('sesion');
+  }
+
+  setPedido(pedido: Pedido){
+    localStorage.setItem('pedido', JSON.stringify(pedido));
+  }
+
+  getPedido(): Pedido {
+    let obj = JSON.parse(localStorage.getItem('pedido') || '{}');
+    let lobj: Pedido = <Pedido>obj;
+    return lobj;
+  }
+
+  eliminarPedido(){
+    localStorage.removeItem('pedido');
   }
 }

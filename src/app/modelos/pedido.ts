@@ -12,7 +12,7 @@ export class Pedido {
 
     constructor(){
         this.id=0;
-        this.codigo="";
+        this.codigo=null as any;
         this.qr="";
         this.qrCantidad=0;
         this.total=0;

@@ -9,19 +9,30 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
+                    <a class="nav-link" href="/index">Pagina Web</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/crear-producto">Crear Producto</a>
                 </li>
             </ul>
+            <div class="d-flex">
+                <a class="nav-link" type="button" href="#" (click)="cerrarSesion($event)">CERRAR SESION</a>
+            </div>
         </div>
     </nav>
     <br>
-    <div class="form-group row">
-        <div class="col-sm-4"></div>
-        <label for="Nombre" class="col-sm-2 col-form-label">Nombre:</label>
-        <div class="col-sm-2">
-            <input type="text" [(ngModel)]="producto_buscar.nombre" class="form-control form-control-sm">
+    <div class="row">
+        <div class="col-sm-2"></div>
+        <div class="col-sm-6">
+            <label>Nombre:</label>
+            <input type="text" [(ngModel)]="productoBuscar.nombre" class="form-control form-control-sm"
+                oninput="this.value = this.value.toUpperCase()">
         </div>
-        <div class="col-sm-4"></div>
+        <div class="col-sm-2">
+            <label>&nbsp;</label>
+            <button class="btn btn-sm btn-block btn-primary" (click)="buscar()">Buscar</button>
+        </div>
+        <div class="col-sm-2"></div>
     </div>
     <br>
     <div class="row">
@@ -32,12 +43,12 @@
             <table class="table table-hover table-bordered" style="font-size: 0.7rem">
                 <thead>
                     <tr>
-                        <th>NOMBRE</th>
-                        <th>MARCA</th>
-                        <th>TALLAS</th>
-                        <th>COLORES</th>
-                        <th>DISPONIBLE</th>
-                        <th>OPCIONES</th>
+                        <th scope="col">NOMBRE</th>
+                        <th scope="col">MARCA</th>
+                        <th scope="col">TALLAS</th>
+                        <th scope="col">COLORES</th>
+                        <th scope="col">DISPONIBLE</th>
+                        <th scope="col">OPCIONES</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -63,11 +74,11 @@
                             </ng-container>
                         </td>
                         <td>
-                            <button>
-                                <mat-icon>edit</mat-icon>
+                            <button class="btn btn-sm btn-primary separate">
+                                <i class="fa fa-edit"></i>
                             </button>
-                            <button>
-                                <mat-icon>check_circle_outline</mat-icon>
+                            <button class="btn btn-sm btn-primary separate">
+                                <i class="fa fa-edit"></i>
                             </button>
                         </td>
                     </tr>

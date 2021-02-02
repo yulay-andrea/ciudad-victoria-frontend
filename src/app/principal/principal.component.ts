@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Producto } from '../modelos/producto';
 import { ProductoService } from '../servicios/producto.service';
 import Swal from 'sweetalert2';
@@ -7,6 +7,12 @@ import { environment } from './../../environments/environment';
 import { Pedido } from '../modelos/pedido';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LineaPedido } from '../modelos/linea-pedido';
+import { PedidoService } from '../servicios/pedido.service';
+import { ResumenPedidoComponent } from '../resumen-pedido/resumen-pedido.component';
+import { BehaviorSubject } from 'rxjs';
+import { SesionService } from '../servicios/sesion.service';
+import { Talla } from '../modelos/talla';
+import { Color } from '../modelos/color';
 
 @Component({
   selector: 'app-principal',
@@ -19,17 +25,22 @@ export class PrincipalComponent implements OnInit {
 
   productosEnc: any[]=[];
 
-  productoPedido: Producto=null as any; 
+  productoPedido: Producto=null as any;
+  tallaPedido: number = -1; 
+  colorPedido: number = -1; 
 
-  pedido: Pedido=null as any;
+  pedido: Pedido=new Pedido;
 
   lineaPedido: LineaPedido=new LineaPedido();
 
   prefijoUrlImagenes=environment.prefijo_url_imagenes;
 
+  @ViewChild('modalAgregarLineaPedido', { static: false }) private modalAgregarLineaPedido: any;
+
   cerrarModal: string="";
   
-  constructor(private productoService : ProductoService, private modalService: NgbModal) { }
+  constructor(private productoService : ProductoService, private pedidoService: PedidoService,
+     private sesionService: SesionService, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.productoService.consultar().subscribe(
@@ -55,11 +66,19 @@ export class PrincipalComponent implements OnInit {
   }
 
   agregarLineaPedido(producto: Producto){
-
+    this.productoPedido=producto;
+    this.open(this.modalAgregarLineaPedido);
   }
 
   crearLineaPedido(){
-
+    this.modalService.dismissAll();
+    this.lineaPedido.producto=this.productoPedido;
+    this.lineaPedido.talla=this.productoPedido.tallas[this.tallaPedido];
+    this.lineaPedido.color=this.productoPedido.colores[this.colorPedido];
+    this.pedido.lineasPedido.push(this.lineaPedido);
+    this.lineaPedido=new LineaPedido();
+    console.log(this.pedido);
+    this.sesionService.setPedido(this.pedido)
   }
 
   bolsos(event:any){

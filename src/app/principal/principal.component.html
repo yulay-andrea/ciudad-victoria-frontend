@@ -21,9 +21,12 @@
                             <a class="nav-link" href="#">TRAJES DEPORTIVOS</a>
                         </li>
                     </ul>
-                    <form class="d-flex">
+                    <div class="d-flex">
+                        <a class="nav-link" type="button" href="/resumen-pedido"><li class="fa fa-cart-plus separate"></li>VER PEDIDO</a>
+                    </div>
+                    <div class="d-flex">
                         <a class="nav-link" type="button" href="/iniciar-sesion">INICIAR SESION</a>
-                    </form>
+                    </div>
                 </div>
             </nav>
         </div>
@@ -76,7 +79,7 @@
                             <div class="card-body">
                                 <h2 class="card-title">{{producto[0].nombre}}</h2>
                                 <p class="card-text">{{producto[0].descripcion}}</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p class="card-text"><small class="text-muted">*incluye envío</small></p>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
@@ -139,7 +142,7 @@
                             <div class="card-body">
                                 <h2 class="card-title">{{producto[1].nombre}}</h2>
                                 <p class="card-text">{{producto[1].descripcion}}</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p class="card-text"><small class="text-muted">*incluye envío</small></p>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
@@ -202,7 +205,7 @@
                             <div class="card-body">
                                 <h2 class="card-title">{{producto[2].nombre}}</h2>
                                 <p class="card-text">{{producto[2].descripcion}}</p>
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p class="card-text"><small class="text-muted">*incluye envío</small></p>
                             </div>
                             <ul class="list-group list-group-flush">
                                 <li class="list-group-item">
@@ -278,7 +281,7 @@
 
 <ng-template #modalAgregarLineaPedido let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">DATOS</h4>
+        <h4 class="modal-title" id="modal-basic-title">PEDIDO</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -290,7 +293,7 @@
                 <div class="input-group">
                     <input type="text" [(ngModel)]="lineaPedido.cantidad" class="form-control form-control-sm"
                         oninput="this.value = this.value.toUpperCase()">
-                    <div class="input-group-text"><i class="fa fa-sort-amount-up-alt"></i></div>
+                    <div class="input-group-text"><i class="fa fa-arrow-up"></i></div>
                 </div>
             </div>
         </div>
@@ -298,10 +301,10 @@
             <div class="col-sm-12">
                 <label>Talla:</label>
                 <div class="input-group">
-                    <select [(ngModel)]="lineaPedido.talla.id" class="form-control form-control-sm">
-                        <option [value]="talla.id" *ngFor="let talla of productoPedido.tallas">{{talla.descripcion}}</option>
+                    <select [(ngModel)]="tallaPedido" class="form-control form-control-sm">
+                        <option [value]="i" *ngFor="let talla of productoPedido.tallas; let i=index">{{talla.descripcion}}</option>
                     </select>
-                    <div class="input-group-text"><i class="fa fa-text-height"></i></div>
+                    <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
                 </div>
             </div>
         </div>
@@ -309,10 +312,10 @@
             <div class="col-sm-12">
                 <label>Color:</label>
                 <div class="input-group">
-                    <select [(ngModel)]="lineaPedido.color.id" class="form-control form-control-sm">
-                        <option [value]="color.id" *ngFor="let color of productoPedido.colores">{{color.descripcion}}</option>
+                    <select [(ngModel)]="colorPedido" class="form-control form-control-sm">
+                        <option [value]="i" *ngFor="let color of productoPedido.colores; let i=index">{{color.descripcion}}</option>
                     </select>
-                    <div class="input-group-text"><i class="fa fa-fill"></i></div>
+                    <div class="input-group-text"><i class="fa fa-contao"></i></div>
                 </div>
             </div>
         </div>
