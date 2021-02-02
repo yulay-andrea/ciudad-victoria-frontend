@@ -22,7 +22,7 @@ export class CrearProductoComponent implements OnInit {
   colorForm: string="";
   coloresForm: string="";
   color: string="";
-  imagen: any;
+  imagen: any= null as any;
 
   constructor(private productoService : ProductoService, private sesionService: SesionService,
     private router: Router ) { }
@@ -42,11 +42,10 @@ export class CrearProductoComponent implements OnInit {
     console.log(this.producto);
     this.productoService.crear(this.producto).subscribe(
       res => {
-        if (res!=null){
           Swal.fire(constantes.exito, constantes.exito_crear_producto, constantes.exito_swal);
-          console.log(res.id);
-          this.crearImagen(res.id);
-        }
+          if(this.imagen!=null){
+            this.crearImagen(res.id);
+          }
       },
       err => {
         Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
@@ -61,6 +60,10 @@ export class CrearProductoComponent implements OnInit {
     this.tallasForm=this.tallasForm+this.tallaForm+"|";
   }
 
+  eliminarTalla(i: number){
+    this.producto.tallas.splice(i, 1);
+  }
+
   crearColor(){
     let color: Color=new Color();
     color.descripcion=this.colorForm;
@@ -68,13 +71,17 @@ export class CrearProductoComponent implements OnInit {
     this.coloresForm=this.coloresForm+this.colorForm+"|";
   }
 
+  eliminarColor(i: number){
+    this.producto.colores.splice(i, 1);
+  }
+
   cargarImagen(event: any){
     let imagenes: FileList=event.target.files;
     this.imagen=imagenes.item(0);
   }
 
-  crearImagen(productoId: number){
-    this.productoService.crearImagen(this.imagen, productoId).subscribe(
+  crearImagen(id: number){
+    this.productoService.crearImagen(this.imagen, id).subscribe(
       res => {
       },
       err => {
@@ -91,6 +98,7 @@ export class CrearProductoComponent implements OnInit {
     if (event!=null)
       event.preventDefault();
     this.sesionService.cerrarSesion();
+    this.navegarIndex();
   }
 
 }

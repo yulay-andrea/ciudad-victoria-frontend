@@ -44,4 +44,8 @@ export class ResumenPedidoComponent implements OnInit {
     );
   }
 
+  ngOnDestroy(): void {
+    this.sesionService.eliminarPedido();
+  }
+
 }
