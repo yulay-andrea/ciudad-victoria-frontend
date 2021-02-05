@@ -52,7 +52,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let producto of productos">
+                    <tr *ngFor="let producto of productos; let i=index">
                         <td>{{producto.nombre}}</td>
                         <td>{{producto.marca}}</td>
                         <td>
@@ -76,10 +76,10 @@
                             </ng-container>
                         </td>
                         <td>
-                            <button class="btn btn-sm btn-primary separate">
+                            <button class="btn btn-sm btn-primary separate" (click)="editar(i)">
                                 <i class="fa fa-edit"></i>
                             </button>
-                            <button class="btn btn-sm btn-primary separate">
+                            <button class="btn btn-sm btn-primary separate" (click)="noDisponible(i)">
                                 <i class="fa fa-minus-circle"></i>
                             </button>
                         </td>
@@ -90,3 +90,241 @@
         <div class="col-sm-1"></div>
     </div>
 </div>
+
+<ng-template #modalProductoActualizar let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">ACTUALIZAR PRODUCTO</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Nombre:</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <input type="text" [(ngModel)]="productoActualizar.nombre" oninput="this.value = this.value.toUpperCase()"
+                        class="form-control form-control-sm">
+                    <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Descripcion:</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <input type="text" [(ngModel)]="productoActualizar.descripcion"
+                        oninput="this.value = this.value.toUpperCase()" class="form-control form-control-sm">
+                    <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Material:</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <input type="text" [(ngModel)]="productoActualizar.material"
+                        oninput="this.value = this.value.toUpperCase()" class="form-control form-control-sm">
+                    <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Marca:</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <select [(ngModel)]="productoActualizar.marca" class="form-control form-control-sm">
+                        <option value="ADIDAS">REBOOK</option>
+                        <option value="NIKE">NIKE</option>
+                        <option value="REBOOK">ADIDAS</option>
+                        <option value="LACOSTE">LACOSTE</option>
+                    </select>
+                    <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Estilo:</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <select [(ngModel)]="productoActualizar.estilo"  class="form-control form-control-sm">
+                        <option value="TENIS">TENIS</option>
+                        <option value="ZAPATILLA">ZAPATILLA</option>
+                        <option value="SANDALIA">SANDALIA</option>
+                    </select>
+                    <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Tipo:</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <select [(ngModel)]="productoActualizar.tipo" class="form-control form-control-sm">
+                        <option value="ZAPATOS">ZAPATOS</option>
+                        <option value="BOLSOS">BOLSOS</option>
+                        <option value="TRAJES DEPORTIVOS">TRAJES DEPORTIVOS</option>
+                    </select>
+                    <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Precio:</label>
+            <div class="col-sm-9">
+                <div class="input-group">
+                    <input type="text" [(ngModel)]="productoActualizar.precio" class="form-control form-control-sm">
+                    <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Garantia:</label>
+            <div class="col-sm-9">
+                <div class="input-group input-group-sm mb-3">
+                    <input type="text" [(ngModel)]="productoActualizar.garantia" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text font-weight-bold">MESES</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Talla:</label>
+            <div class="col-sm-5">
+                <div class="input-group">
+                    <select [(ngModel)]="tallaForm" class="form-control form-control-sm">
+                        <option>21</option>
+                        <option>22</option>
+                        <option>23</option>
+                        <option>24</option>
+                        <option>25</option>
+                        <option>26</option>
+                        <option>27</option>
+                        <option>28</option>
+                        <option>29</option>
+                        <option>30</option>
+                        <option>31</option>
+                        <option>32</option>
+                        <option>33</option>
+                        <option>34</option>
+                        <option>35</option>
+                        <option>36</option>
+                        <option>37</option>
+                        <option>38</option>
+                        <option>39</option>
+                        <option>40</option>
+                        <option>41</option>
+                        <option>42</option>
+                        <option>43</option>
+                    </select>
+                    <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-4">
+                <button (click)="crearTalla()" class="btn btn-sm btn-block btn-primary">Agregar Talla</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm">
+                <table class="table table-hover table-bordered" style="font-size: 0.7rem">
+                    <thead class="table-active">
+                        <tr>
+                            <th>No.</th>
+                            <th>TALLA</th>
+                            <th>OPC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let talla of this.productoActualizar.tallas; let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{talla.descripcion}}</td>
+                            <td>
+                                <button (click)="eliminarTalla(i)" class="btn btn-primary form-control-sm"><i
+                                        class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Colores:</label>
+            <div class="col-sm-5">
+                <div class="input-group">
+                    <select [(ngModel)]="colorForm" class="form-control form-control-sm">
+                        <option>ROJO</option>
+                        <option>BLANCO</option>
+                        <option>NEGRO</option>
+                        <option>VERDE</option>
+                        <option>AZUL OSCURO</option>
+                        <option>GRIS</option>
+                        <option>BEIGE</option>
+                    </select>
+                    <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
+                </div>
+            </div>
+            <br>
+            <div class="col-sm-4">
+                <button (click)="crearColor()" class="btn btn-sm btn-block btn-primary">Agregar Color</button>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm">
+                <table class="table table-hover table-bordered" style="font-size: 0.7rem">
+                    <thead class="table-active">
+                        <tr>
+                            <th>No.</th>
+                            <th>COLOR</th>
+                            <th>OPC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let color of productoActualizar.colores; let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{color.descripcion}}</td>
+                            <td>
+                                <button (click)="eliminarColor(i)" class="btn btn-primary form-control-sm"><i
+                                        class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label class="col-sm-3 col-form-label font-weight-bold">Imagenes:</label>
+            <div class="col-sm-9">
+                <input type="file" id="imagen" name="imagen" (change)="cargarImagen($event)" required>
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm">
+                <table class="table table-hover table-bordered" style="font-size: 0.7rem">
+                    <thead class="table-active">
+                        <tr>
+                            <th>No.</th>
+                            <th>IMAGEN</th>
+                            <th>OPC</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let imagen of productoActualizar.imagenes; let i=index">
+                            <td>{{i+1}}</td>
+                            <td>{{imagen.ruta}}</td>
+                            <td>
+                                <button (click)="eliminarImagen(i)" class="btn btn-primary form-control-sm"><i
+                                        class="fa fa-trash"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="actualizar()">Guardar</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cerrar')">Cerrar</button>
+    </div>
+</ng-template>

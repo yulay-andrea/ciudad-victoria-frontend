@@ -1,0 +1,104 @@
+<div class="contenedor">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">TUS PEDIDOS</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/index">Pagina Web</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/resumen-pedido">Ver Pedido</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <br>
+    <div class="row">
+        <div class="col-sm" align="center">
+            <h2>TUS PEDIDOS</h2>
+            <hr>
+        </div>
+    </div>
+    <br>
+    <ng-container *ngFor="let pedido of pedidos">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <div class="alert alert-success row" role="alert">
+                    <div class="col-sm-4">
+                        <label>Disponible</label>
+                        <input type="checkbox" value="{{pedido.disponible}}" [disabled]="true"
+                            class="form-control form-control-sm">
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Fecha Entrega</label>
+                        <input type="text" value="{{pedido.fechaEntrega}}" [disabled]="true"
+                            class="form-control form-control-sm">
+                    </div>
+                    <div class="col-sm-4">
+                        <label>Enviado</label>
+                        <input type="checkbox" value="{{pedido.enviado}}" [disabled]="true"
+                            class="form-control form-control-sm">
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10 table-responsive">
+                <table class="table table-hover table-bordered" style="font-size: 0.7rem">
+                    <thead>
+                        <tr>
+                            <th scope="col">PROD</th>
+                            <th scope="col">CANT</th>
+                            <th scope="col">TALLA</th>
+                            <th scope="col">COLOR</th>
+                            <th scope="col">VALOR</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let lineaPedido of pedido.lineasPedido; let i=index">
+                            <td>{{lineaPedido.producto.nombre}}</td>
+                            <td>{{lineaPedido.cantidad}}</td>
+                            <td>{{lineaPedido.talla.descripcion}}</td>
+                            <td>{{lineaPedido.color.descripcion}}</td>
+                            <td>{{lineaPedido.producto.precio}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <ng-container *ngIf="pedido.total!=0">
+            <div class="row">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-10">
+                    <div class="alert alert-success" role="alert">
+                        EL TOTAL DEL PEDIDO ES DE : $ {{pedido.total}}
+                    </div>
+                </div>
+                <div class="col-sm-1"></div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="pedido.qr!=null">
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <img class="card-img-top" height="400px" src="{{prefijoUrlImagenes+pedido.qr}}"
+                        alt="Card image cap">
+                    <div class="card-body">
+                        <h2 class="card-title" align="center">QR DE PAGO BANCOLOMBIA</h2>
+                        <p class="card-text"><small class="text-muted">*incluye envío del pedido</small></p>
+                    </div>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </ng-container>
+    </ng-container>
+</div>

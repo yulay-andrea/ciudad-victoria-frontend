@@ -83,4 +83,28 @@ export class PedidoService {
       })
     );
   }
+
+  consultarPorCliente(celular: string): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(environment.host + util.ruta + util.pedido + util.consultarporcliente + '/' + celular, util.options).pipe(
+      map(response => response as Pedido[]),
+      catchError(err => {
+        return throwError(err);
+      }));
+  }
+
+  obtenerPorCodigo(codigo: string): Observable<Pedido> {
+    return this.http.get<Pedido>(environment.host + util.ruta + util.pedido + util.obtenerporcodigo + '/' + codigo, util.options).pipe(
+      map(response => response as Pedido),
+      catchError(err => {
+        return throwError(err);
+      }));
+  }
+
+  confirmar(pedido: Pedido): Observable<Pedido> {
+    return this.http.put<Pedido>(environment.host + util.ruta + util.pedido + util.confirmar, pedido, util.options).pipe(
+      map(response => response as Pedido),
+      catchError(err => {
+        return throwError(err);
+      }));
+  }
 }

@@ -11,6 +11,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/index">Pagina Web</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/leer-pedido-cliente">Pagina Web</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -25,8 +28,6 @@
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10 table-responsive">
-            <h2 align="center">PEDIDO</h2>
-            <hr>
             <table class="table table-hover table-bordered" style="font-size: 0.7rem">
                 <thead>
                     <tr>
@@ -39,14 +40,14 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let lineaPedido of pedido.lineasPedido">
+                    <tr *ngFor="let lineaPedido of pedido.lineasPedido; let i=index">
                         <td>{{lineaPedido.producto.nombre}}</td>
                         <td>{{lineaPedido.cantidad}}</td>
                         <td>{{lineaPedido.talla.descripcion}}</td>
                         <td>{{lineaPedido.color.descripcion}}</td>
                         <td>{{lineaPedido.producto.precio}}</td>
                         <td>
-                            <button class="btn btn-sm btn-primary separate">
+                            <button type="button" (click)="eliminarLineaPedido(i)" [disabled]="pedido.confirmar" class="btn btn-sm btn-primary separate">
                                 <i class="fa fa-trash"></i>
                             </button>
                         </td>
@@ -56,6 +57,7 @@
         </div>
         <div class="col-sm-1"></div>
     </div>
+    <br>
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
@@ -65,21 +67,36 @@
                 </div>
             </ng-container>
         </div>
-    </div>
-    <div class="row">
         <div class="col-sm-1"></div>
-        <div class="col-sm-10">
-            <button class="btn btn-sm btn-success btn-block" (click)="confirmarPedido()">Confirmar Pedido</button>
-        </div>
     </div>
-    <div class="row">
-        <div class="col-sm-1"></div>
-        <div class="col-sm-10">
-            <ng-container *ngIf="pedido.codigo!=null">
-                <div class="alert alert-danger" role="alert">
-                    POR FAVOR ANOTAR EL CODIGO DE SU PEDIDO: {{pedido.codigo}}
+    <br>
+    <ng-container *ngIf="habilitarConfirmarPedido">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-3">
+                <label class="font-weight-bold">Celular:</label>
+            </div>
+            <div class="col-sm-7">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-append">
+                        <span class="input-group-text font-weight-bold">+57</span>
+                    </div>
+                    <input type="text" [(ngModel)]="pedido.cliente.celular" [disabled]="pedido.confirmar"
+                        oninput="this.value = this.value.toUpperCase()" class="form-control form-control-sm">
                 </div>
-            </ng-container>
+            </div>
+            <div class="col-sm-1"></div>
         </div>
-    </div>
+    </ng-container>
+    <br>
+    <br>
+    <ng-container *ngIf="habilitarConfirmarPedido">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-10">
+                <button (click)="confirmarPedido()" class="btn btn-sm btn-success btn-block" [disabled]="pedido.confirmar">Confirmar Pedido</button>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </ng-container>
 </div>

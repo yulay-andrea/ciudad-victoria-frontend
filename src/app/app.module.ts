@@ -36,10 +36,12 @@ import { InicioSesionComponent } from './inicio-sesion/inicio-sesion.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LeerProductoComponent } from './producto/leer-producto/leer-producto.component';
 import { CrearProductoComponent } from './producto/crear-producto/crear-producto.component';
-import { ResumenPedidoComponent } from './resumen-pedido/resumen-pedido.component';
+import { ResumenPedidoComponent } from './pedido/resumen-pedido/resumen-pedido.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PedidoService } from './servicios/pedido.service';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { LeerPedidoComponent } from './pedido/leer-pedido/leer-pedido.component';
+import { LeerPedidoClienteComponent } from './pedido/leer-pedido-cliente/leer-pedido-cliente.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +50,9 @@ import { LocationStrategy, PathLocationStrategy } from '@angular/common';
     InicioSesionComponent,
     LeerProductoComponent,
     CrearProductoComponent,
-    ResumenPedidoComponent
+    ResumenPedidoComponent,
+    LeerPedidoComponent,
+    LeerPedidoClienteComponent
   ],
   imports: [
     BrowserModule,

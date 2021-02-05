@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Color } from 'src/app/modelos/color';
-import { Imagen } from 'src/app/modelos/imagen';
 import { Producto } from 'src/app/modelos/producto';
 import { Talla } from 'src/app/modelos/talla';
 import { ProductoService } from 'src/app/servicios/producto.service';
@@ -32,7 +31,7 @@ export class CrearProductoComponent implements OnInit {
   }
 
   validarSesion(){
-    let usuarioActivo=this.sesionService.clienteLogueado();
+    let usuarioActivo=this.sesionService.adminLogueado();
     if(!usuarioActivo){
       this.navegarIndex();
     }

@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 import * as util from '../util';
 import { environment } from '../../environments/environment';
 import { Sesion } from '../modelos/sesion';
-import { Pedido } from '../modelos/pedido';
+import { Cliente } from '../modelos/cliente';
+import { LineaPedido } from '../modelos/linea-pedido';
 
 @Injectable({
   providedIn: 'root'
@@ -25,34 +26,60 @@ export class SesionService {
   }
 
   setSesion(sesion: Sesion) {
-    sessionStorage.setItem('sesion', JSON.stringify(sesion));
-
+    sessionStorage.setItem("sesion", JSON.stringify(sesion));
   }
 
   getSesion(): Sesion {
-    return JSON.parse(sessionStorage.getItem('sesion') || '{}');
+    return JSON.parse(sessionStorage.getItem("sesion") || '{}');
   }
 
-  clienteLogueado(){
-    let sesion=JSON.parse(sessionStorage.getItem('sesion') || null as any);
+  adminLogueado(){
+    let sesion=JSON.parse(sessionStorage.getItem("sesion") || null as any);
     return sesion!=null;
   }
 
   cerrarSesion(){
-    sessionStorage.removeItem('sesion');
+    sessionStorage.removeItem("sesion");
   }
 
-  setPedido(pedido: Pedido){
-    localStorage.setItem('pedido', JSON.stringify(pedido));
+  setLineasPedido(lineasPedido: LineaPedido[]){
+    localStorage.setItem("lineasPedido", JSON.stringify(lineasPedido));
   }
 
-  getPedido(): Pedido {
-    let obj = JSON.parse(localStorage.getItem('pedido') || '{}');
-    let lobj: Pedido = <Pedido>obj;
+  getLineasPedido(): LineaPedido[] {
+    let obj = JSON.parse(localStorage.getItem("lineasPedido") || null as any);
+    let lobj: LineaPedido[] = <LineaPedido[]>obj;
     return lobj;
   }
 
-  eliminarPedido(){
-    localStorage.removeItem('pedido');
+  eliminarLineasPedido(){
+    localStorage.removeItem("lineasPedido");
+  }
+
+  setCodigo(codigo: string){
+    localStorage.setItem("codigo", JSON.stringify(codigo));
+  }
+
+  getCodigo(): string {
+    let codigo = JSON.parse(localStorage.getItem("codigo") || null as any);
+    return codigo;
+  }
+
+  eliminarCodigo(){
+    localStorage.removeItem("codigo");
+  }
+
+  setCliente(cliente: Cliente){
+    localStorage.setItem("cliente", JSON.stringify(cliente));
+  }
+
+  getCliente(): Cliente {
+    let obj = JSON.parse(localStorage.getItem("cliente") || null as any);
+    let lobj: Cliente = <Cliente>obj;
+    return lobj;
+  }
+
+  eliminarCliente(){
+    localStorage.removeItem('cliente');
   }
 }
