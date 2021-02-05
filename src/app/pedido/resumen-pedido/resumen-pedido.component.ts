@@ -6,6 +6,9 @@ import * as constantes from '../../constantes';
 import { SesionService } from '../../servicios/sesion.service';
 import { Cliente } from '../../modelos/cliente';
 import { LineaPedido } from '../../modelos/linea-pedido';
+import { ClienteService } from 'src/app/servicios/cliente.service';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-resumen-pedido',
@@ -18,7 +21,8 @@ export class ResumenPedidoComponent implements OnInit {
   codigo: string = null as any;
   lineasPedido: LineaPedido[] = [];
   habilitarConfirmarPedido: boolean=false;
-  constructor(private pedidoService: PedidoService, private sesionService: SesionService) { }
+  constructor(private pedidoService: PedidoService, private sesionService: SesionService,
+    private clienteService: ClienteService, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.construirPedido();
@@ -108,7 +112,7 @@ export class ResumenPedidoComponent implements OnInit {
         }
       },
       err => {
-        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+        Swal.fire(constantes.error, constantes.error_confirmar_pedido, constantes.error_swal)
       }
     );
   }
@@ -128,5 +132,41 @@ export class ResumenPedidoComponent implements OnInit {
         Swal.fire(constantes.error, constantes.error_actualizar_pedido, constantes.error_swal)
       }
     );
+  }
+
+  obtenerCliente(cliente: Cliente) {
+    this.clienteService.obtenerPorCelular(cliente.celular).subscribe(
+      res => {
+        if (res != null) {
+          Swal.fire(constantes.exito, constantes.exito_confirmar_pedido, constantes.exito_swal);
+          this.sesionService.setCliente(res);
+          this.navegarLeerPedidoCliente();
+        }
+      },
+      err => {
+        Swal.fire(constantes.error, constantes.error_iniciar_sesion_cliente, constantes.error_swal)
+      }
+    );
+  }
+
+  leerPedidoCliente(event: any) {
+    if (event!=null)
+      event.preventDefault();
+    Swal.fire({
+      title: constantes.titulo_leer_pedido_cliente,
+      text: constantes.ingresar_numero_celular,
+      input: 'text',
+      showCancelButton: true
+    }).then((result) => {
+      if (result.value) {
+        let cliente: Cliente=new Cliente();
+        cliente.celular=result.value;
+        this.obtenerCliente(cliente);
+      }
+    });
+  }
+
+  navegarLeerPedidoCliente() {
+    this.router.navigate(['/leer-pedido-cliente']);
   }
 }

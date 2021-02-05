@@ -8,7 +8,6 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LineaPedido } from '../modelos/linea-pedido';
 import { PedidoService } from '../servicios/pedido.service';
 import { SesionService } from '../servicios/sesion.service';
-import { ClienteService } from '../servicios/cliente.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +16,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./principal.component.css']
 })
 export class PrincipalComponent implements OnInit {
+
+  titulo: string="";
 
   productos: Producto[] = [];
   
@@ -36,11 +37,15 @@ export class PrincipalComponent implements OnInit {
 
   cerrarModal: string = "";
 
-  constructor(private productoService: ProductoService, private pedidoService: PedidoService,
-    private clienteService: ClienteService, private sesionService: SesionService,
+  constructor(private productoService: ProductoService, private pedidoService: PedidoService, private sesionService: SesionService,
     private router: Router, private modalService: NgbModal) { }
 
   ngOnInit(): void {
+    this.titulo=constantes.tipo_zapatos;
+    this.consultarProductos(constantes.tipo_zapatos);
+  }
+
+  consultarProductos(tipo: string){
     this.productoService.consultar().subscribe(
       res => {
         this.productos = res
@@ -55,30 +60,12 @@ export class PrincipalComponent implements OnInit {
         if (productosRec.length > 0) {
           this.productosEnc.push(productosRec);
         }
-        console.log(this.productosEnc);
       },
       err => {
-        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+        Swal.fire(constantes.error, constantes.error_consultar_producto, constantes.error_swal)
       }
     );
   }
-
-  /*leerPedido(event: any) {
-    if (event!=null)
-      event.preventDefault();
-    Swal.fire({
-      title: constantes.titulo_generar_pedido,
-      text: constantes.ingresar_numero_celular,
-      input: 'text',
-      showCancelButton: true
-    }).then((result) => {
-      if (result.value) {
-        let cliente: Cliente=new Cliente();
-        cliente.celular=result.value;
-        this.crearCliente(cliente);
-      }
-    });
-  }*/
 
   agregarLineaPedido(producto: Producto) {
     this.productoPedido = producto;
@@ -97,13 +84,22 @@ export class PrincipalComponent implements OnInit {
   }
 
   bolsos(event: any) {
-
+    if (event!=null)
+      event.preventDefault();
+    this.titulo=constantes.tipo_bolsos;
+    this.consultarProductos(constantes.tipo_bolsos);
   }
   trajesDeportivos(event: any) {
-
+    if (event!=null)
+      event.preventDefault();
+    this.titulo=constantes.tipo_trajes_deportivos;
+    this.consultarProductos(constantes.tipo_trajes_deportivos);
   }
   zapatos(event: any) {
-
+    if (event!=null)
+      event.preventDefault();
+    this.titulo=constantes.tipo_zapatos;
+    this.consultarProductos(constantes.tipo_zapatos);
   }
 
   navegarPedido() {

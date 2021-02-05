@@ -74,4 +74,12 @@ export class ClienteService {
       })
     );
   }
+
+  obtenerPorCelular(celular: string): Observable<Cliente> {
+    return this.http.get<Cliente>(environment.host + util.ruta + util.cliente+util.obtenerporcelular + '/' + celular, util.options).pipe(
+      map(response => response as Cliente),
+      catchError(err => {
+        return throwError(err);
+      }));
+  }
 }

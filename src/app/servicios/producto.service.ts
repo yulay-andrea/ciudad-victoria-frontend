@@ -83,6 +83,15 @@ export class ProductoService {
     );
   }
 
+  consultarPorTipo(tipo: string): Observable<Producto[]> {
+    return this.http.get<Producto[]>(environment.host + util.ruta + util.producto+util.consultarPorTipo+'/'+tipo, util.options).pipe(
+      map(response => response as Producto[]),
+      catchError(err => {
+        return throwError(err);
+      })
+    );
+  }
+
   crearImagen(imagen: File, id: number): Observable<boolean> {
     const formData: FormData = new FormData();
     formData.append('imagen', imagen, imagen.name);
