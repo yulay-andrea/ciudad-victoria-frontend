@@ -4,7 +4,6 @@ import { Talla } from "./talla";
 
 export class Producto {
     id: number;
-    nombre: string;
     descripcion: string; 
     material: string;
     marca: string;
@@ -19,7 +18,6 @@ export class Producto {
 
     constructor(){
         this.id=0;
-        this.nombre="";
         this.descripcion="";
         this.material="";
         this.marca="";
