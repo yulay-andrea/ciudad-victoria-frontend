@@ -8,7 +8,7 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LineaPedido } from '../modelos/linea-pedido';
 import { PedidoService } from '../servicios/pedido.service';
 import { SesionService } from '../servicios/sesion.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-principal',
@@ -33,20 +33,29 @@ export class PrincipalComponent implements OnInit {
 
   prefijoUrlImagenes = environment.prefijo_url_imagenes;
 
+  tipo_zapatos: string=constantes.tipo_zapatos;
+  tipo_bolsos: string=constantes.tipo_bolsos;
+  tipo_trajes_deportivos: string=constantes.tipo_trajes_deportivos;
+
   @ViewChild('modalAgregarLineaPedido', { static: false }) private modalAgregarLineaPedido: any;
 
   cerrarModal: string = "";
 
   constructor(private productoService: ProductoService, private pedidoService: PedidoService, private sesionService: SesionService,
-    private router: Router, private modalService: NgbModal) { }
+    private router: Router, private modalService: NgbModal, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.titulo=constantes.tipo_zapatos;
-    this.consultarProductos(constantes.tipo_zapatos);
+    this.titulo=this.route.snapshot.queryParamMap.get('producto') || null as any;
+    console.log(this.titulo);
+    if(this.titulo==null){
+      this.titulo=this.tipo_zapatos;
+    }
+    
+    this.consultarProductos(this.titulo);
   }
 
   consultarProductos(tipo: string){
-    this.productoService.consultar().subscribe(
+    this.productoService.consultarPorTipo(tipo).subscribe(
       res => {
         this.productos = res
         let productosRec: Producto[] = [];
@@ -83,7 +92,7 @@ export class PrincipalComponent implements OnInit {
     this.sesionService.setLineasPedido(this.lineasPedido)
   }
 
-  bolsos(event: any) {
+  /*bolsos(event: any) {
     if (event!=null)
       event.preventDefault();
     this.titulo=constantes.tipo_bolsos;
@@ -100,7 +109,7 @@ export class PrincipalComponent implements OnInit {
       event.preventDefault();
     this.titulo=constantes.tipo_zapatos;
     this.consultarProductos(constantes.tipo_zapatos);
-  }
+  }*/
 
   navegarPedido() {
     this.router.navigate(['/resumen-pedido']);

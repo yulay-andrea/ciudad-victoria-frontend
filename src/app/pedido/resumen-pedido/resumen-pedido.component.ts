@@ -21,6 +21,8 @@ export class ResumenPedidoComponent implements OnInit {
   codigo: string = null as any;
   lineasPedido: LineaPedido[] = [];
   habilitarConfirmarPedido: boolean=false;
+
+  
   constructor(private pedidoService: PedidoService, private sesionService: SesionService,
     private clienteService: ClienteService, private router: Router, private modalService: NgbModal) { }
 
