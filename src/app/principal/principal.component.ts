@@ -89,27 +89,9 @@ export class PrincipalComponent implements OnInit {
     this.lineasPedido.push(this.lineaPedido);
     this.lineaPedido = new LineaPedido();
     console.log(this.lineasPedido);
-    this.sesionService.setLineasPedido(this.lineasPedido)
+    this.sesionService.setLineasPedido(this.lineasPedido);
+    Swal.fire(constantes.exito, constantes.exito_agregar_producto, constantes.exito_swal);
   }
-
-  /*bolsos(event: any) {
-    if (event!=null)
-      event.preventDefault();
-    this.titulo=constantes.tipo_bolsos;
-    this.consultarProductos(constantes.tipo_bolsos);
-  }
-  trajesDeportivos(event: any) {
-    if (event!=null)
-      event.preventDefault();
-    this.titulo=constantes.tipo_trajes_deportivos;
-    this.consultarProductos(constantes.tipo_trajes_deportivos);
-  }
-  zapatos(event: any) {
-    if (event!=null)
-      event.preventDefault();
-    this.titulo=constantes.tipo_zapatos;
-    this.consultarProductos(constantes.tipo_zapatos);
-  }*/
 
   navegarPedido() {
     this.router.navigate(['/resumen-pedido']);

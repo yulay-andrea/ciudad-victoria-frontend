@@ -12,7 +12,9 @@ export const buscar: string='/buscar';
 export const consultarporcliente: string='/consultarporcliente';
 export const obtenerporcodigo: string='/obtenerporcodigo';
 export const confirmar: string='/confirmar'
+export const generar: string='/generar'
 export const obtenerporcelular: string='/obtenerporcelular';
+export const qr: string='/qr';
 
 
 export const headers= new HttpHeaders({'Content-Type':'application/json'});

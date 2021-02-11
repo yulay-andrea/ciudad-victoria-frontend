@@ -31,7 +31,6 @@
                 <thead>
                     <tr>
                         <th scope="col">MARCA</th>
-                        <th scope="col">CANTIDAD</th>
                         <th scope="col">TALLA</th>
                         <th scope="col">COLOR</th>
                         <th scope="col">VALOR</th>
@@ -41,12 +40,11 @@
                 <tbody>
                     <tr *ngFor="let lineaPedido of pedido.lineasPedido; let i=index">
                         <td>{{lineaPedido.producto.marca}}</td>
-                        <td>{{lineaPedido.cantidad}}</td>
                         <td>{{lineaPedido.talla.descripcion}}</td>
                         <td>{{lineaPedido.color.descripcion}}</td>
                         <td>{{lineaPedido.producto.precio}}</td>
                         <td>
-                            <button type="button" (click)="eliminarLineaPedido(i)" [disabled]="pedido.confirmar"
+                            <button type="button" (click)="eliminarLineaPedido(i)" [disabled]="pedido.generar"
                                 class="btn btn-sm btn-primary separate">
                                 <i class="fa fa-trash"></i>
                             </button>
@@ -61,6 +59,17 @@
     <div class="row">
         <div class="col-sm-1"></div>
         <div class="col-sm-10">
+            <ng-container *ngIf="pedido.codigo!=null">
+                <div class="alert alert-success" role="alert">
+                    EL CODIGO DEL PEDIDO ES : {{pedido.codigo}}
+                </div>
+            </ng-container>
+        </div>
+        <div class="col-sm-1"></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
             <ng-container *ngIf="pedido.total!=0">
                 <div class="alert alert-success" role="alert">
                     EL TOTAL DEL PEDIDO ES DE : $ {{pedido.total}}
@@ -71,17 +80,29 @@
     </div>
     <br>
     <ng-container *ngIf="habilitarConfirmarPedido">
-        <div class="row">
+        <div class="form-row">
             <div class="col-sm-1"></div>
-            <div class="col-sm-3">
-                <label class="font-weight-bold">Celular:</label>
-            </div>
+            <label class="col-sm-3 col-form-label font-weight-bold">Celular:</label>
             <div class="col-sm-7">
                 <div class="input-group input-group-sm">
                     <div class="input-group-append">
                         <span class="input-group-text font-weight-bold">+57</span>
                     </div>
-                    <input type="text" [(ngModel)]="pedido.cliente.celular" [disabled]="pedido.confirmar"
+                    <input type="text" [(ngModel)]="pedido.cliente.celular" [disabled]="pedido.generar"
+                        oninput="this.value = this.value.toUpperCase()" class="form-control form-control-sm">
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="form-row">
+            <div class="col-sm-1"></div>
+            <label class="col-sm-3 col-form-label font-weight-bold">Direccion:</label>
+            <div class="col-sm-7">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-append">
+                        <div class="input-group-text"><i class="fa fa-home"></i></div>
+                    </div>
+                    <input type="text" [(ngModel)]="pedido.cliente.direccion" [disabled]="pedido.generar"
                         oninput="this.value = this.value.toUpperCase()" class="form-control form-control-sm">
                 </div>
             </div>
@@ -94,8 +115,8 @@
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
-                <button (click)="confirmarPedido()" class="btn btn-sm btn-success btn-block"
-                    [disabled]="pedido.confirmar">Confirmar Pedido</button>
+                <button (click)="generarPedido()" class="btn btn-sm btn-success btn-block"
+                    [disabled]="pedido.generar">Generar Pedido</button>
             </div>
             <div class="col-sm-1"></div>
         </div>

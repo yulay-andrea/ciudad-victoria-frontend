@@ -5,6 +5,7 @@ export const exito_swal='success';
 export const exito='Exito';
 export const exito_crear_producto='Exito al crear el producto';
 export const exito_actualizar_producto='Exito al actualizar el producto';
+export const exito_agregar_producto='Exito al agregar el producto';
 export const exito_crear_imagen='Exito al crear la imagen';
 
 export const exito_iniciar_sesion='Exito al iniciar sesion';
@@ -21,6 +22,8 @@ export const error_obtener_pedido='Error al obtener el pedido';
 export const error_consultar_pedido='Error al consultar el pedido';
 export const error_consultar_producto='Error al consultar el producto';
 
+export const exito_generar_pedido='Exito al generar el pedido';
+export const error_generar_pedido='Error al generar el pedido';
 export const exito_confirmar_pedido='Exito al confirmar el pedido';
 export const error_confirmar_pedido='Error al confirmar el pedido';
 

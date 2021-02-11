@@ -9,8 +9,8 @@ export class Pedido {
     qr: string;
     cantidadQr: number; 
     total: number;
+    generar: boolean;
     confirmar: boolean;
-    disponible: boolean;
     enviado: boolean;
     pagado: boolean;
     cliente: Cliente;
@@ -24,8 +24,8 @@ export class Pedido {
         this.qr="";
         this.cantidadQr=0;
         this.total=0;
+        this.generar=false;
         this.confirmar=false;
-        this.disponible=false;
         this.enviado=false;
         this.pagado=false;
         this.lineasPedido=[];

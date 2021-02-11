@@ -20,9 +20,9 @@ export class ResumenPedidoComponent implements OnInit {
   pedido: Pedido = new Pedido();
   codigo: string = null as any;
   lineasPedido: LineaPedido[] = [];
-  habilitarConfirmarPedido: boolean=false;
+  habilitarConfirmarPedido: boolean = false;
 
-  
+
   constructor(private pedidoService: PedidoService, private sesionService: SesionService,
     private clienteService: ClienteService, private router: Router, private modalService: NgbModal) { }
 
@@ -40,32 +40,38 @@ export class ResumenPedidoComponent implements OnInit {
     if (this.codigo != null) {
       this.pedidoService.obtenerPorCodigo(this.codigo).subscribe(
         res => {
-          this.pedido = res;
-          for (let i = 0; i < this.lineasPedido.length; i++) {
-            this.pedido.lineasPedido.push(this.lineasPedido[i]);
-          }
-          console.log("actualizar pedido");
-          console.log(this.pedido);
-          this.pedidoService.actualizar(this.pedido).subscribe(
-            res => {
-              this.pedido = res;
-              this.sesionService.eliminarLineasPedido();
-              let total: number = 0;
-              for (let i = 0; i < this.pedido.lineasPedido.length; i++) {
-                total = total + (this.pedido.lineasPedido[i].producto.precio * this.pedido.lineasPedido[i].cantidad);
-              }
-              this.pedido.total = total;
-              this.sesionService.setCodigo(this.pedido.codigo);
-              if(this.pedido.lineasPedido.length>0){
-                this.pedido.cliente=new Cliente();
-                this.habilitarConfirmarPedido=true;
-                
-              }
-            },
-            err => {
-              Swal.fire(constantes.error, constantes.error_actualizar_pedido, constantes.error_swal)
+          if (res != null) {
+            this.pedido = res;
+            for (let i = 0; i < this.lineasPedido.length; i++) {
+              this.pedido.lineasPedido.push(this.lineasPedido[i]);
             }
-          );
+            console.log("actualizar pedido");
+            console.log(this.pedido);
+            this.pedidoService.actualizar(this.pedido).subscribe(
+              res => {
+                this.pedido = res;
+                this.sesionService.eliminarLineasPedido();
+                let total: number = 0;
+                for (let i = 0; i < this.pedido.lineasPedido.length; i++) {
+                  total = total + Number(this.pedido.lineasPedido[i].producto.precio);
+                }
+                this.pedido.total = total;
+                this.sesionService.setCodigo(this.pedido.codigo);
+                if (this.pedido.lineasPedido.length > 0) {
+                  this.pedido.cliente = new Cliente();
+                  this.habilitarConfirmarPedido = true;
+
+                }
+              },
+              err => {
+                Swal.fire(constantes.error, constantes.error_actualizar_pedido, constantes.error_swal)
+              }
+            );
+          } else{
+            this.sesionService.eliminarCodigo();
+            this.sesionService.eliminarLineasPedido();
+          }
+
         },
         err => {
           Swal.fire(constantes.error, constantes.error_obtener_pedido, constantes.error_swal)
@@ -73,7 +79,7 @@ export class ResumenPedidoComponent implements OnInit {
       );
     }
 
-    if (this.codigo == null && this.lineasPedido.length>0) {
+    if (this.codigo == null && this.lineasPedido.length > 0) {
       for (let i = 0; i < this.lineasPedido.length; i++) {
         this.pedido.lineasPedido.push(this.lineasPedido[i]);
       }
@@ -85,14 +91,14 @@ export class ResumenPedidoComponent implements OnInit {
           this.sesionService.eliminarLineasPedido();
           let total: number = 0;
           for (let i = 0; i < this.pedido.lineasPedido.length; i++) {
-            total = total + (this.pedido.lineasPedido[i].producto.precio * this.pedido.lineasPedido[i].cantidad);
+            total = total + Number(this.pedido.lineasPedido[i].producto.precio);
           }
           this.pedido.total = total;
           this.sesionService.setCodigo(this.pedido.codigo);
-          if(this.pedido.lineasPedido.length>0){
-            this.pedido.cliente=new Cliente();
-            this.habilitarConfirmarPedido=true;
-            
+          if (this.pedido.lineasPedido.length > 0) {
+            this.pedido.cliente = new Cliente();
+            this.habilitarConfirmarPedido = true;
+
           }
         },
         err => {
@@ -100,16 +106,16 @@ export class ResumenPedidoComponent implements OnInit {
         }
       );
     }
-    
+
   }
 
-  confirmarPedido() {
+  generarPedido() {
     console.log(this.pedido);
-    this.pedidoService.confirmar(this.pedido).subscribe(
+    this.pedidoService.generar(this.pedido).subscribe(
       res => {
         if (res != null) {
           Swal.fire(constantes.exito, constantes.exito_confirmar_pedido, constantes.exito_swal);
-          this.pedido=res;
+          this.pedido = res;
           this.sesionService.eliminarCodigo();
         }
       },
@@ -119,11 +125,11 @@ export class ResumenPedidoComponent implements OnInit {
     );
   }
 
-  eliminarLineaPedido(i: number){
+  eliminarLineaPedido(i: number) {
     this.pedido.lineasPedido.splice(i, 1);
     let total: number = 0;
     for (let i = 0; i < this.pedido.lineasPedido.length; i++) {
-      total = total + (this.pedido.lineasPedido[i].producto.precio * this.pedido.lineasPedido[i].cantidad);
+      total = total + Number(this.pedido.lineasPedido[i].producto.precio);
     }
     this.pedido.total = total;
     this.pedidoService.actualizar(this.pedido).subscribe(
@@ -152,7 +158,7 @@ export class ResumenPedidoComponent implements OnInit {
   }
 
   leerPedidoCliente(event: any) {
-    if (event!=null)
+    if (event != null)
       event.preventDefault();
     Swal.fire({
       title: constantes.titulo_leer_pedido_cliente,
@@ -161,8 +167,8 @@ export class ResumenPedidoComponent implements OnInit {
       showCancelButton: true
     }).then((result) => {
       if (result.value) {
-        let cliente: Cliente=new Cliente();
-        cliente.celular=result.value;
+        let cliente: Cliente = new Cliente();
+        cliente.celular = result.value;
         this.obtenerCliente(cliente);
       }
     });

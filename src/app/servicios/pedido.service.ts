@@ -73,10 +73,10 @@ export class PedidoService {
     );
   }
 
-  crearImagen(imagen: File, id: number): Observable<boolean> {
+  crearQr(qr: File, id: number): Observable<boolean> {
     const formData: FormData = new FormData();
-    formData.append('imagen', imagen, imagen.name);
-    return this.http.post(environment.host + util.ruta + util.pedido + '/imagen' + '/' + id, formData, util.optionsImagen).pipe(
+    formData.append('qr', qr, qr.name);
+    return this.http.post(environment.host + util.ruta + util.pedido + util.qr + '/' + id, formData, util.optionsImagen).pipe(
       map(response => response as any),
       catchError(err => {
         return throwError(err);
@@ -100,8 +100,8 @@ export class PedidoService {
       }));
   }
 
-  confirmar(pedido: Pedido): Observable<Pedido> {
-    return this.http.put<Pedido>(environment.host + util.ruta + util.pedido + util.confirmar, pedido, util.options).pipe(
+  generar(pedido: Pedido): Observable<Pedido> {
+    return this.http.put<Pedido>(environment.host + util.ruta + util.pedido + util.generar, pedido, util.options).pipe(
       map(response => response as Pedido),
       catchError(err => {
         return throwError(err);
