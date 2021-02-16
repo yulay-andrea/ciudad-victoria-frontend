@@ -47,6 +47,20 @@ export class LeerPedidoClienteComponent implements OnInit {
     this.open(this.modalVerQr);
   }
 
+  descargarQr(path: string): void {
+    let url=this.prefijoUrlImagenes+path;
+    this.pedidoService
+      .descargarQr(url)
+      .subscribe(blob => {
+        const a = document.createElement('a')
+        const objectUrl = URL.createObjectURL(blob)
+        a.href = objectUrl
+        a.download = path;
+        a.click();
+        URL.revokeObjectURL(objectUrl);
+      })
+  }
+
   open(content: any) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true}).result.then((result) => {
       this.cerrarModal = `Closed with: ${result}`;

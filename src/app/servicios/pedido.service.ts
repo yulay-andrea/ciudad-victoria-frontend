@@ -107,4 +107,10 @@ export class PedidoService {
         return throwError(err);
       }));
   }
+
+  descargarQr(url: string): Observable<Blob> {
+    return this.http.get(url, {
+      responseType: 'blob'
+    })
+  }
 }
