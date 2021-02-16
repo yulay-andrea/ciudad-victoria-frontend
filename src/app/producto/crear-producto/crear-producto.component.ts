@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Color } from 'src/app/modelos/color';
+import { Parametro } from 'src/app/modelos/parametro';
 import { Producto } from 'src/app/modelos/producto';
 import { Talla } from 'src/app/modelos/talla';
+import { ParametroService } from 'src/app/servicios/parametro.service';
 import { ProductoService } from 'src/app/servicios/producto.service';
 import { SesionService } from 'src/app/servicios/sesion.service';
 import Swal from 'sweetalert2';
@@ -23,11 +25,65 @@ export class CrearProductoComponent implements OnInit {
   color: string="";
   imagen: any= null as any;
 
-  constructor(private productoService : ProductoService, private sesionService: SesionService,
+  categorias: Parametro[]=[];
+  tallas: Parametro[]=[];
+  colores: Parametro[]=[];
+  estilos: Parametro[]=[];
+
+  constructor(private productoService : ProductoService, private parametroService: ParametroService,
+    private sesionService: SesionService,
     private router: Router ) { }
 
   ngOnInit(): void {
     this.validarSesion();
+    this.consultarCategorias();
+    this.consultarEstilos();
+    this.consultarTallas();
+    this.consultarColores();
+  }
+
+  consultarCategorias(){
+    this.parametroService.consultarPorTipo(constantes.parametroCategoria).subscribe(
+      res => {
+        this.categorias = res
+      },
+      err => {
+        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+      }
+    );
+  }
+
+  consultarEstilos(){
+    this.parametroService.consultarPorTipo(constantes.parametroEstilo).subscribe(
+      res => {
+        this.estilos = res
+      },
+      err => {
+        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+      }
+    );
+  }
+
+  consultarTallas(){
+    this.parametroService.consultarPorTipo(constantes.parametroTalla).subscribe(
+      res => {
+        this.tallas = res
+      },
+      err => {
+        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+      }
+    );
+  }
+
+  consultarColores(){
+    this.parametroService.consultarPorTipo(constantes.parametroColor).subscribe(
+      res => {
+        this.colores = res
+      },
+      err => {
+        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+      }
+    );
   }
 
   validarSesion(){
@@ -45,6 +101,7 @@ export class CrearProductoComponent implements OnInit {
           if(this.imagen!=null){
             this.crearImagen(res.id);
           }
+          this.navegarLeerProducto();
       },
       err => {
         Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
@@ -91,6 +148,10 @@ export class CrearProductoComponent implements OnInit {
 
   navegarIndex() {
     this.router.navigate(['/index']);
+  }
+
+  navegarLeerProducto() {
+    this.router.navigate(['/leer-producto']);
   }
 
   cerrarSesion(event:any){

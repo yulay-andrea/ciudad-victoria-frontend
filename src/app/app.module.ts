@@ -42,6 +42,7 @@ import { PedidoService } from './servicios/pedido.service';
 import { LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { LeerPedidoComponent } from './pedido/leer-pedido/leer-pedido.component';
 import { LeerPedidoClienteComponent } from './pedido/leer-pedido-cliente/leer-pedido-cliente.component';
+import { DateShortPipe } from './pipes/date-short-pipe';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { LeerPedidoClienteComponent } from './pedido/leer-pedido-cliente/leer-pe
     CrearProductoComponent,
     ResumenPedidoComponent,
     LeerPedidoComponent,
-    LeerPedidoClienteComponent
+    LeerPedidoClienteComponent,
+    DateShortPipe
   ],
   imports: [
     BrowserModule,

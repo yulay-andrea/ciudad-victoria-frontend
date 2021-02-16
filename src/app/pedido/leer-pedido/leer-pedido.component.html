@@ -31,7 +31,7 @@
         </div>
     </div>
     <br>
-    <ng-container *ngFor="let pedido of pedidos">
+    <ng-container *ngFor="let pedido of pedidos; let i=index">
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
@@ -64,15 +64,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let lineaPedido of pedido.lineasPedido; let i=index">
+                        <tr *ngFor="let lineaPedido of pedido.lineasPedido">
                             <td>{{lineaPedido.producto.marca}}</td>
                             <td>{{lineaPedido.talla.descripcion}}</td>
                             <td>{{lineaPedido.color.descripcion}}</td>
                             <td>{{lineaPedido.producto.precio}}</td>
                             <td>
-                                <button class="btn btn-sm btn-primary separate" (click)="editar(i)">
-                                    <i class="fa fa-edit"></i>
-                                </button>
+                                NA
                             </td>
                         </tr>
                     </tbody>
@@ -91,7 +89,7 @@
                 <div class="col-sm-1"></div>
             </div>
         </ng-container>
-        <ng-container *ngIf="pedido.qr!=null">
+        <ng-container *ngIf="pedido.qr!=''">
             <div class="row">
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">
@@ -105,6 +103,15 @@
                 <div class="col-sm-4"></div>
             </div>
         </ng-container>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <button class="btn btn-sm btn-block btn-primary separate" (click)="editar(i)">
+                    SEGUIMIENTO
+                </button>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
     </ng-container>
 </div>
 <ng-template #modalActualizarPedido let-modal>
@@ -120,7 +127,7 @@
                 <div class="form-row">
                     <label class="col-sm-5 col-form-label font-weight-bold">Confirmacion del Pedido</label>
                     <div class="col-sm-7">
-                        <input type="checkbox" value="{{pedidoActualizar.confirmar}}"
+                        <input type="checkbox" [(ngModel)]="pedidoActualizar.confirmar"
                             class="form-control form-control-sm">
                     </div>
                 </div>

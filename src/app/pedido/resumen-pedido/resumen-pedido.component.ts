@@ -146,7 +146,6 @@ export class ResumenPedidoComponent implements OnInit {
     this.clienteService.obtenerPorCelular(cliente.celular).subscribe(
       res => {
         if (res != null) {
-          Swal.fire(constantes.exito, constantes.exito_confirmar_pedido, constantes.exito_swal);
           this.sesionService.setCliente(res);
           this.navegarLeerPedidoCliente();
         }

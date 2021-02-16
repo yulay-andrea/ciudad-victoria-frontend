@@ -8,7 +8,7 @@ export class Producto {
     material: string;
     marca: string;
     estilo: string;
-    tipo: string;
+    categoria: string;
     precio: number;
     garantia: string;
     tallas: Talla[];
@@ -22,7 +22,7 @@ export class Producto {
         this.material="";
         this.marca="";
         this.estilo="";
-        this.tipo="";
+        this.categoria="";
         this.precio=0;
         this.garantia="";
         this.tallas=[];

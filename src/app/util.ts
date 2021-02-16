@@ -3,6 +3,7 @@ import {HttpHeaders} from '@angular/common/http';
 
 export const ruta: string='/ciudadvictoria';
 export const producto: string='/producto';
+export const parametro: string='/parametro';
 export const consultarPorTipo: string='/consultarPorTipo';
 export const cliente: string='/cliente';
 export const pedido: string='/pedido';

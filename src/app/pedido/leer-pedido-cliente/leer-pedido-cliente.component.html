@@ -29,19 +29,24 @@
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
-                <div class="alert alert-success row" role="alert">
-                    <div class="col-sm-4">
-                        <label>Confirmado</label>
+                <div class="alert alert-primary form-row" role="alert">
+                    <label class="col-sm-2 col-form-label font-weight-bold">Fecha Pedido</label>
+                    <div class="col-sm-2">
+                        <input type="text" value="{{pedido.fecha | DateShortPipe}}" [disabled]="true"
+                            class="form-control form-control-sm">
+                    </div>
+                    <label class="col-sm-1 col-form-label font-weight-bold">Confirmado</label>
+                    <div class="col-sm-1">
                         <input type="checkbox" value="{{pedido.confirmar}}" [disabled]="true"
                             class="form-control form-control-sm">
                     </div>
-                    <div class="col-sm-4">
-                        <label>Fecha Entrega</label>
+                    <label class="col-sm-2 col-form-label font-weight-bold">Fecha Entrega</label>
+                    <div class="col-sm-2">
                         <input type="text" value="{{pedido.fechaEntrega}}" [disabled]="true"
                             class="form-control form-control-sm">
                     </div>
-                    <div class="col-sm-4">
-                        <label>Enviado</label>
+                    <label class="col-sm-1 col-form-label font-weight-bold">Enviado</label>
+                    <div class="col-sm-1">
                         <input type="checkbox" value="{{pedido.enviado}}" [disabled]="true"
                             class="form-control form-control-sm">
                     </div>
@@ -84,7 +89,7 @@
                 <div class="col-sm-1"></div>
             </div>
         </ng-container>
-        <ng-container *ngIf="pedido.qr!=null">
+        <ng-container *ngIf="pedido.qr!=''">
             <div class="row">
                 <div class="col-sm-4"></div>
                 <div class="col-sm-4">

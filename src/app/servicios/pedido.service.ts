@@ -73,11 +73,11 @@ export class PedidoService {
     );
   }
 
-  crearQr(qr: File, id: number): Observable<boolean> {
+  crearQr(qr: File, id: number): Observable<Pedido> {
     const formData: FormData = new FormData();
     formData.append('qr', qr, qr.name);
     return this.http.post(environment.host + util.ruta + util.pedido + util.qr + '/' + id, formData, util.optionsImagen).pipe(
-      map(response => response as any),
+      map(response => response as Pedido),
       catchError(err => {
         return throwError(err);
       })

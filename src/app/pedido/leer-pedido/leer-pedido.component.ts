@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Pedido } from 'src/app/modelos/pedido';
@@ -7,6 +7,7 @@ import { SesionService } from 'src/app/servicios/sesion.service';
 import { environment } from './../../../environments/environment';
 import Swal from 'sweetalert2';
 import * as constantes from '../../constantes';
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-leer-pedido',
@@ -24,7 +25,8 @@ export class LeerPedidoComponent implements OnInit {
   @ViewChild('modalActualizarPedido', { static: false }) private modalActualizarPedido: any;
 
   constructor(private pedidoService: PedidoService, private sesionService: SesionService,
-    private modalService: NgbModal, private router: Router) { }
+    private modalService: NgbModal, private router: Router,
+    @Inject(DOCUMENT) private _document: Document) { }
 
   ngOnInit(): void {
     this.consultarPedidos();
@@ -43,12 +45,14 @@ export class LeerPedidoComponent implements OnInit {
 
   actualizarPedido(){
     console.log(this.pedidoActualizar);
-    this.pedidoService.crear(this.pedidoActualizar).subscribe(
+    this.pedidoService.actualizar(this.pedidoActualizar).subscribe(
       res => {
+          this.pedidoActualizar=res;
           Swal.fire(constantes.exito, constantes.exito_actualizar_producto, constantes.exito_swal);
-          if(this.qr!=null){
-            this.crearQr(res.id);
+          if(this.qr!=null) {
+            this.actualizarQr(this.pedidoActualizar.id);
           }
+          this.ngOnInit();
           this.modalService.dismissAll();
       },
       err => {
@@ -57,9 +61,11 @@ export class LeerPedidoComponent implements OnInit {
     );
   }
 
-  crearQr(id: number){
+  actualizarQr(id: number){
     this.pedidoService.crearQr(this.qr, id).subscribe(
       res => {
+        this.pedidoActualizar=res;
+        Swal.fire(constantes.exito, constantes.exito_actualizar_qr, constantes.exito_swal);
       },
       err => {
         Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
@@ -68,6 +74,7 @@ export class LeerPedidoComponent implements OnInit {
   }
 
   editar(i: number){
+    this.qr=null;
     this.pedidoActualizar= {... this.pedidos[i]};
     this.open(this.modalActualizarPedido);
   }
@@ -104,5 +111,11 @@ export class LeerPedidoComponent implements OnInit {
       event.preventDefault();
     this.sesionService.cerrarSesion();
     this.navegarIndex();
+  }
+
+  recargar(){
+    if(this._document.defaultView){ 
+      this._document.defaultView.location.reload() ;
+    }
   }
 }

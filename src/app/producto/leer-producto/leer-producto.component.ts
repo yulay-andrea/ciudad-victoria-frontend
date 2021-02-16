@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Color } from 'src/app/modelos/color';
 import { Talla } from 'src/app/modelos/talla';
+import { ParametroService } from 'src/app/servicios/parametro.service';
+import { Parametro } from 'src/app/modelos/parametro';
 
 @Component({
   selector: 'app-leer-producto',
@@ -20,22 +22,79 @@ export class LeerProductoComponent implements OnInit {
   tallaForm: string="";
   colorForm: string="";
   imagen: any= null as any;
+  categorias: Parametro[]=[];
+  estilos: Parametro[]=[];
+  tallas: Parametro[]=[];
+  colores: Parametro[]=[];
+
 
   cerrarModal: string="";
 
   @ViewChild('modalProductoActualizar', { static: false }) private modalProductoActualizar: any;
 
   constructor(private sesionService: SesionService, private productoService : ProductoService,
-    private modalService: NgbModal, private router: Router ) { }
+    private parametroService: ParametroService, private modalService: NgbModal, private router: Router ) { }
 
   productos: Producto[]=[];
   productoBuscar: Producto=new Producto();
 
   ngOnInit(): void {
     this.validarSesion();
+    this.consultarProductos();
+    this.consultarEstilos();
+    this.consultarTallas();
+    this.consultarColores();
+    
+  }
+
+  consultarProductos(){
     this.productoService.consultar().subscribe(
       res => {
         this.productos = res
+      },
+      err => {
+        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+      }
+    );
+  }
+
+  consultarCategorias(){
+    this.parametroService.consultarPorTipo(constantes.parametroCategoria).subscribe(
+      res => {
+        this.categorias = res
+      },
+      err => {
+        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+      }
+    );
+  }
+
+  consultarEstilos(){
+    this.parametroService.consultarPorTipo(constantes.parametroEstilo).subscribe(
+      res => {
+        this.estilos = res
+      },
+      err => {
+        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+      }
+    );
+  }
+
+  consultarTallas(){
+    this.parametroService.consultarPorTipo(constantes.parametroTalla).subscribe(
+      res => {
+        this.tallas = res
+      },
+      err => {
+        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+      }
+    );
+  }
+
+  consultarColores(){
+    this.parametroService.consultarPorTipo(constantes.parametroColor).subscribe(
+      res => {
+        this.colores = res
       },
       err => {
         Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
