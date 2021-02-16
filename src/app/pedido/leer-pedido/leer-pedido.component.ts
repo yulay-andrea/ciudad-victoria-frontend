@@ -23,6 +23,7 @@ export class LeerPedidoComponent implements OnInit {
 
   cerrarModal: string="";
   @ViewChild('modalActualizarPedido', { static: false }) private modalActualizarPedido: any;
+  @ViewChild('modalVerQr', { static: false }) private modalVerQr: any;
 
   constructor(private pedidoService: PedidoService, private sesionService: SesionService,
     private modalService: NgbModal, private router: Router,
@@ -49,11 +50,9 @@ export class LeerPedidoComponent implements OnInit {
       res => {
           this.pedidoActualizar=res;
           Swal.fire(constantes.exito, constantes.exito_actualizar_producto, constantes.exito_swal);
-          if(this.qr!=null) {
-            this.actualizarQr(this.pedidoActualizar.id);
-          }
-          this.ngOnInit();
+          console.log(this.qr);
           this.modalService.dismissAll();
+          this.consultarPedidos();
       },
       err => {
         Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
@@ -61,8 +60,8 @@ export class LeerPedidoComponent implements OnInit {
     );
   }
 
-  actualizarQr(id: number){
-    this.pedidoService.crearQr(this.qr, id).subscribe(
+  actualizarQr(){
+    this.pedidoService.actualizarQr(this.qr, this.pedidoActualizar.id).subscribe(
       res => {
         this.pedidoActualizar=res;
         Swal.fire(constantes.exito, constantes.exito_actualizar_qr, constantes.exito_swal);
@@ -79,8 +78,13 @@ export class LeerPedidoComponent implements OnInit {
     this.open(this.modalActualizarPedido);
   }
 
+  verQr(i: number){
+    this.pedidoActualizar= {... this.pedidos[i]};
+    this.open(this.modalVerQr);
+  }
+
   open(content: any) {
-    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title', centered: true}).result.then((result) => {
       this.cerrarModal = `Closed with: ${result}`;
     }, (reason) => {
       this.cerrarModal = `Dismissed ${this.getDismissReason(reason)}`;
@@ -111,11 +115,5 @@ export class LeerPedidoComponent implements OnInit {
       event.preventDefault();
     this.sesionService.cerrarSesion();
     this.navegarIndex();
-  }
-
-  recargar(){
-    if(this._document.defaultView){ 
-      this._document.defaultView.location.reload() ;
-    }
   }
 }

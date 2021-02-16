@@ -89,25 +89,21 @@
                 <div class="col-sm-1"></div>
             </div>
         </ng-container>
-        <ng-container *ngIf="pedido.qr!=''">
-            <div class="row">
-                <div class="col-sm-4"></div>
-                <div class="col-sm-4">
-                    <img class="card-img-top" height="400px" src="{{prefijoUrlImagenes+pedido.qr}}"
-                        alt="Card image cap">
-                    <div class="card-body">
-                        <h2 class="card-title" align="center">QR DE PAGO BANCOLOMBIA</h2>
-                        <p class="card-text"><small class="text-muted">*incluye envío del pedido</small></p>
-                    </div>
-                </div>
-                <div class="col-sm-4"></div>
-            </div>
-        </ng-container>
         <div class="row">
             <div class="col-sm-4"></div>
             <div class="col-sm-4">
                 <button class="btn btn-sm btn-block btn-primary separate" (click)="editar(i)">
                     SEGUIMIENTO
+                </button>
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+                <button class="btn btn-sm btn-block btn-primary separate" (click)="verQr(i)">
+                    VER QR
                 </button>
             </div>
             <div class="col-sm-4"></div>
@@ -125,29 +121,30 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="form-row">
-                    <label class="col-sm-5 col-form-label font-weight-bold">Confirmacion del Pedido</label>
+                    <label align="center" class="col-sm-5 col-form-label font-weight-bold">Confirmacion del Pedido</label>
                     <div class="col-sm-7">
                         <input type="checkbox" [(ngModel)]="pedidoActualizar.confirmar"
                             class="form-control form-control-sm">
                     </div>
                 </div>
                 <div class="form-row">
-                    <label class="col-sm-5 col-form-label font-weight-bold">Subir QR</label>
-                    <div class="col-sm-7">
-                        <input type="file" id="qr" name="qr" (change)="cargarQr($event)">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <label class="col-sm-5 col-form-label font-weight-bold">Fecha Entrega</label>
+                    <label align="center" class="col-sm-5 col-form-label font-weight-bold">Fecha Entrega</label>
                     <div class="col-sm-7">
                         <input type="text" value="{{pedidoActualizar.fechaEntrega}}"
                             class="form-control form-control-sm">
                     </div>
                 </div>
                 <div class="form-row">
-                    <label class="col-sm-5 col-form-label font-weight-bold">Enviado</label>
+                    <label align="center" class="col-sm-5 col-form-label font-weight-bold">Enviado</label>
                     <div class="col-sm-7">
-                        <input type="checkbox" value="{{pedidoActualizar.enviado}}"
+                        <input type="checkbox" [(ngModel)]="pedidoActualizar.enviado"
+                            class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label align="center" class="col-sm-5 col-form-label font-weight-bold">Pagado</label>
+                    <div class="col-sm-7">
+                        <input type="checkbox" [(ngModel)]="pedidoActualizar.pagado"
                             class="form-control form-control-sm">
                     </div>
                 </div>
@@ -156,6 +153,48 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="actualizarPedido()">Guardar</button>
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cerrar')">Cerrar</button>
+    </div>
+</ng-template>
+<ng-template #modalVerQr let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">VER QR</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="form-row">
+            <label align="center" class="col-sm-5 col-form-label font-weight-bold">Subir QR</label>
+            <div class="col-sm-7">
+                <input type="file" id="imagen" name="imagen" (change)="cargarQr($event)">
+            </div>
+        </div>
+        <ng-container *ngIf="pedidoActualizar.qr!=''">
+            <div class="row">
+                <div class="col-sm">
+                    <img class="card-img-top" height="400px" src="{{prefijoUrlImagenes+pedidoActualizar.qr}}"
+                        alt="Imagen QR">
+                    <div class="card-body">
+                        <h2 class="card-title" align="center">QR DE PAGO BANCOLOMBIA</h2>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="pedidoActualizar.qr==''">
+            <div class="row">
+                <div class="col-sm-4"></div>
+                <div class="col-sm-4">
+                    <div class="alert alert-warnning" role="alert">
+                        NO EXISTE QR DE PAGO BANCOLOMBIA
+                    </div>
+                </div>
+                <div class="col-sm-4"></div>
+            </div>
+        </ng-container>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="actualizarQr()">Guardar</button>
         <button type="button" class="btn btn-outline-dark" (click)="modal.close('Cerrar')">Cerrar</button>
     </div>
 </ng-template>
