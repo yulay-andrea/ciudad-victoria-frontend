@@ -65,6 +65,8 @@ export class LeerPedidoComponent implements OnInit {
       res => {
         this.pedidoActualizar=res;
         Swal.fire(constantes.exito, constantes.exito_actualizar_qr, constantes.exito_swal);
+        this.modalService.dismissAll();
+        this.consultarPedidos();
       },
       err => {
         Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)

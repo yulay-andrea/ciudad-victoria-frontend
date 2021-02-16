@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
     <a class="navbar-brand" href="#">VER PRODUCTO</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -128,9 +128,16 @@
                     </div>
                 </div>
                 <div class="form-row">
+                    <label align="center" class="col-sm-5 col-form-label font-weight-bold">Pagado</label>
+                    <div class="col-sm-7">
+                        <input type="checkbox" [(ngModel)]="pedidoActualizar.pagado"
+                            class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="form-row">
                     <label align="center" class="col-sm-5 col-form-label font-weight-bold">Fecha Entrega</label>
                     <div class="col-sm-7">
-                        <input type="text" value="{{pedidoActualizar.fechaEntrega}}"
+                        <input type="date" [(ngModel)]="pedidoActualizar.fechaEntrega"
                             class="form-control form-control-sm">
                     </div>
                 </div>
@@ -138,13 +145,6 @@
                     <label align="center" class="col-sm-5 col-form-label font-weight-bold">Enviado</label>
                     <div class="col-sm-7">
                         <input type="checkbox" [(ngModel)]="pedidoActualizar.enviado"
-                            class="form-control form-control-sm">
-                    </div>
-                </div>
-                <div class="form-row">
-                    <label align="center" class="col-sm-5 col-form-label font-weight-bold">Pagado</label>
-                    <div class="col-sm-7">
-                        <input type="checkbox" [(ngModel)]="pedidoActualizar.pagado"
                             class="form-control form-control-sm">
                     </div>
                 </div>
