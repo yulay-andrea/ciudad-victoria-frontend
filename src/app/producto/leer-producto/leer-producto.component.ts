@@ -41,6 +41,7 @@ export class LeerProductoComponent implements OnInit {
   ngOnInit(): void {
     this.validarSesion();
     this.consultarProductos();
+    this.consultarCategorias();
     this.consultarEstilos();
     this.consultarTallas();
     this.consultarColores();
