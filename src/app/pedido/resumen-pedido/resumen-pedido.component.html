@@ -82,6 +82,20 @@
     <ng-container *ngIf="habilitarConfirmarPedido">
         <div class="form-row">
             <div class="col-sm-1"></div>
+            <label class="col-sm-3 col-form-label font-weight-bold">Nombre:</label>
+            <div class="col-sm-7">
+                <div class="input-group input-group-sm">
+                    <div class="input-group-append">
+                        <span class="input-group-text font-weight-bold"><i class="fa fa-user"></i></span>
+                    </div>
+                    <input type="text" [(ngModel)]="pedido.cliente.nombre" [disabled]="pedido.generar"
+                        oninput="this.value = this.value.toUpperCase()" class="form-control form-control-sm">
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="form-row">
+            <div class="col-sm-1"></div>
             <label class="col-sm-3 col-form-label font-weight-bold">Celular:</label>
             <div class="col-sm-7">
                 <div class="input-group input-group-sm">

@@ -88,7 +88,7 @@ export class PrincipalComponent implements OnInit {
     this.lineaPedido.color = this.productoPedido.colores[this.colorPedido];
     this.lineasPedido.push(this.lineaPedido);
     this.lineaPedido = new LineaPedido();
-    this.productoPedido=null as any;
+    this.productoPedido=new Producto();
     console.log(this.lineasPedido);
     this.sesionService.setLineasPedido(this.lineasPedido);
     Swal.fire(constantes.exito, constantes.exito_agregar_producto, constantes.exito_swal);
