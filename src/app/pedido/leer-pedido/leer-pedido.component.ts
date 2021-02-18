@@ -8,6 +8,8 @@ import { environment } from './../../../environments/environment';
 import Swal from 'sweetalert2';
 import * as constantes from '../../constantes';
 import { DOCUMENT } from '@angular/common';
+import { ParametroService } from 'src/app/servicios/parametro.service';
+import { Parametro } from 'src/app/modelos/parametro';
 
 @Component({
   selector: 'app-leer-pedido',
@@ -21,12 +23,16 @@ export class LeerPedidoComponent implements OnInit {
   qr: any= null as any;
   prefijoUrlImagenes = environment.prefijo_url_imagenes;
 
+  estadosPedido: Parametro[]=[];
+  estadoPedido: string="";
+  
+
   cerrarModal: string="";
   @ViewChild('modalActualizarPedido', { static: false }) private modalActualizarPedido: any;
   @ViewChild('modalVerQr', { static: false }) private modalVerQr: any;
 
   constructor(private pedidoService: PedidoService, private sesionService: SesionService,
-    private modalService: NgbModal, private router: Router,
+    private parametroService: ParametroService, private modalService: NgbModal, private router: Router,
     @Inject(DOCUMENT) private _document: Document) { }
 
   ngOnInit(): void {
@@ -37,6 +43,17 @@ export class LeerPedidoComponent implements OnInit {
     this.pedidoService.consultar().subscribe(
       res => {
         this.pedidos = res
+      },
+      err => {
+        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+      }
+    );
+  }
+
+  consultarEstadosPedido(){
+    this.parametroService.consultarPorTipo(constantes.estado_pedido).subscribe(
+      res => {
+        this.estadosPedido = res
       },
       err => {
         Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
@@ -83,6 +100,18 @@ export class LeerPedidoComponent implements OnInit {
   verQr(i: number){
     this.pedidoActualizar= {... this.pedidos[i]};
     this.open(this.modalVerQr);
+  }
+
+  consultarPorEstadoPedido(){
+    this.pedidoService.consultarPorEstado(this.estadoPedido).subscribe(
+      res => {
+        this.pedidos=res;
+        Swal.fire(constantes.exito, constantes.exito_consultar_por_estado_pedido, constantes.exito_swal);
+      },
+      err => {
+        Swal.fire(constantes.error, constantes.error_consultar_por_estado_pedido, constantes.error_swal)
+      }
+    );
   }
 
   open(content: any) {

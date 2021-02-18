@@ -42,7 +42,7 @@
                         <td>{{lineaPedido.producto.marca}}</td>
                         <td>{{lineaPedido.talla.descripcion}}</td>
                         <td>{{lineaPedido.color.descripcion}}</td>
-                        <td>{{lineaPedido.producto.precio}}</td>
+                        <td>{{lineaPedido.producto.precio | currency}}</td>
                         <td>
                             <button type="button" (click)="eliminarLineaPedido(i)" [disabled]="pedido.generar"
                                 class="btn btn-sm btn-primary separate">
@@ -72,7 +72,7 @@
         <div class="col-sm-10">
             <ng-container *ngIf="pedido.total!=0">
                 <div class="alert alert-success" role="alert">
-                    EL TOTAL DEL PEDIDO ES DE : $ {{pedido.total}}
+                    EL TOTAL DEL PEDIDO ES DE : $ {{pedido.total | currency}}
                 </div>
             </ng-container>
         </div>
@@ -110,7 +110,7 @@
         </div>
         <div class="form-row">
             <div class="col-sm-1"></div>
-            <label class="col-sm-3 col-form-label font-weight-bold">Direccion:</label>
+            <label class="col-sm-3 col-form-label font-weight-bold">Direccion (Ciudad y Barrio):</label>
             <div class="col-sm-7">
                 <div class="input-group input-group-sm">
                     <div class="input-group-append">
@@ -135,4 +135,20 @@
             <div class="col-sm-1"></div>
         </div>
     </ng-container>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm">
+            <footer class="text-muted">
+                <div class="container">
+                    <p class="float-right">
+                        <a href="#">Back to top</a>
+                    </p>
+                    <p>Ciudad Victoria Tienda Virtual. Todos los derechos reservados 2021.</p>
+                    <p>Instagram Ciudad Victoria <a href="../../">Visitala!</a> o haznos una pregunta a <a
+                            href="../../getting-started/">Contactenos</a>.</p>
+                </div>
+            </footer>
+        </div>
+    </div>
 </div>

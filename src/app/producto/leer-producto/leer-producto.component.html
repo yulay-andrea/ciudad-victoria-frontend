@@ -135,7 +135,8 @@
             <div class="col-sm-9">
                 <div class="input-group">
                     <select [(ngModel)]="productoActualizar.estilo" class="form-control form-control-sm">
-                        <option *ngFor="let estilo of estilos; let i=index" [value]=estilo.valor>{{estilo.valor}}</option>
+                        <option *ngFor="let estilo of estilos; let i=index" [value]=estilo.valor>{{estilo.valor}}
+                        </option>
                     </select>
                     <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
                 </div>
@@ -176,18 +177,15 @@
         </div>
         <div class="form-group row">
             <label class="col-sm-3 col-form-label font-weight-bold">Talla:</label>
-            <div class="col-sm-5">
+            <div class="col-sm">
                 <div class="input-group">
-                    <select [(ngModel)]="tallaForm" class="form-control form-control-sm">
+                    <select [(ngModel)]="tallaForm" (change)="crearTalla()" class="form-control form-control-sm">
                         <option *ngFor="let talla of tallas; let i=index" [value]=talla.valor>{{talla.valor}}</option>
                     </select>
                     <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
                 </div>
             </div>
             <br>
-            <div class="col-sm-4">
-                <button (click)="crearTalla()" class="btn btn-sm btn-block btn-primary">Agregar Talla</button>
-            </div>
         </div>
         <div class="form-group row">
             <div class="col-sm">
@@ -214,18 +212,15 @@
         </div>
         <div class="form-group row">
             <label class="col-sm-3 col-form-label font-weight-bold">Colores:</label>
-            <div class="col-sm-5">
+            <div class="col-sm">
                 <div class="input-group">
-                    <select [(ngModel)]="colorForm" class="form-control form-control-sm">
+                    <select [(ngModel)]="colorForm" (change)="crearColor()" class="form-control form-control-sm">
                         <option *ngFor="let color of colores; let i=index" [value]=color.valor>{{color.valor}}</option>
                     </select>
                     <div class="input-group-text"><i class="fa fa-tumblr"></i></div>
                 </div>
             </div>
             <br>
-            <div class="col-sm-4">
-                <button (click)="crearColor()" class="btn btn-sm btn-block btn-primary">Agregar Color</button>
-            </div>
         </div>
         <div class="form-group row">
             <div class="col-sm">

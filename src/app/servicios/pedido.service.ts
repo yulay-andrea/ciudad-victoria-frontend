@@ -85,7 +85,7 @@ export class PedidoService {
   }
 
   consultarPorCliente(celular: string): Observable<Pedido[]> {
-    return this.http.get<Pedido[]>(environment.host + util.ruta + util.pedido + util.consultarporcliente + '/' + celular, util.options).pipe(
+    return this.http.get<Pedido[]>(environment.host + util.ruta + util.pedido + util.consultarPorCliente + '/' + celular, util.options).pipe(
       map(response => response as Pedido[]),
       catchError(err => {
         return throwError(err);
@@ -103,6 +103,14 @@ export class PedidoService {
   generar(pedido: Pedido): Observable<Pedido> {
     return this.http.put<Pedido>(environment.host + util.ruta + util.pedido + util.generar, pedido, util.options).pipe(
       map(response => response as Pedido),
+      catchError(err => {
+        return throwError(err);
+      }));
+  }
+
+  consultarPorEstado(estado: string): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(environment.host + util.ruta + util.pedido + util.consultarPorEstadoPedido + '/'+estado, util.options).pipe(
+      map(response => response as Pedido[]),
       catchError(err => {
         return throwError(err);
       }));

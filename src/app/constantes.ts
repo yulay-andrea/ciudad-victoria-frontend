@@ -23,6 +23,9 @@ export const error_obtener_pedido='Error al obtener el pedido';
 export const error_consultar_pedido='Error al consultar el pedido';
 export const error_consultar_producto='Error al consultar el producto';
 
+export const exito_consultar_por_estado_pedido='Exito al consultar por estado del pedido';
+export const error_consultar_por_estado_pedido='Error al consultar por estado del pedido';
+
 export const exito_generar_pedido='Exito al generar el pedido';
 export const error_generar_pedido='Error al generar el pedido';
 export const exito_confirmar_pedido='Exito al confirmar el pedido';
@@ -36,3 +39,5 @@ export const parametroCategoria="CATEGORIA";
 export const parametroEstilo="ESTILO";
 export const parametroTalla="TALLA";
 export const parametroColor="COLOR";
+
+export const estado_pedido='ESTADO_PEDIDO';
