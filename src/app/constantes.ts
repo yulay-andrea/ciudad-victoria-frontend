@@ -18,10 +18,19 @@ export const titulo_leer_pedido_cliente='Ver tus Pedidos!';
 export const ingresar_numero_celular='Por favor ingresa el numero de celular';
 
 export const error_crear_pedido='Error al crear el pedido';
+export const error_crear_producto='Error al crear el pedido';
 export const error_actualizar_pedido='Error al actualizar el pedido';
+export const error_actualizar_producto='Error al actualizar el producto';
 export const error_obtener_pedido='Error al obtener el pedido';
 export const error_consultar_pedido='Error al consultar el pedido';
 export const error_consultar_producto='Error al consultar el producto';
+export const error_talla_existente='Error talla existente';
+export const error_color_existente='Error color existente';
+export const error_crear_imagen='Error al crear la imagen';
+export const error_consultar_categorias='Error al consultar las categorias';
+export const error_consultar_estilos='Error al consultar los estilos';
+export const error_consultar_tallas='Error al consultar las tallas';
+export const error_consultar_colores='Error al consultar los colores';
 
 export const exito_consultar_por_estado_pedido='Exito al consultar por estado del pedido';
 export const error_consultar_por_estado_pedido='Error al consultar por estado del pedido';

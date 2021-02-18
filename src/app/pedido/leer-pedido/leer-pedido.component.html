@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark navbar-fixed-top">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <a class="navbar-brand" href="#">VER PRODUCTO</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -187,6 +187,18 @@
         </button>
     </div>
     <div class="modal-body">
+        <div class="form-group row">
+            <label align="center" class="col-sm-3 col-form-label font-weight-bold">Subir QR:</label>
+            <div class="col-sm-5">
+                <input hidden type="file" #botonImagen id="imagen" name="imagen" (change)="cargarQr($event)">
+                <button (click)="botonImagen.click()" class="btn btn-sm btn-block btn-primary">Cargar</button>
+            </div>
+            <div class="col-sm-4">
+                <ng-container *ngIf="qr!=null">
+                    <p>{{qr.name}}</p>
+                </ng-container>
+            </div>
+        </div>
         <div class="form-row">
             <label align="center" class="col-sm-5 col-form-label font-weight-bold">Subir QR</label>
             <div class="col-sm-7">

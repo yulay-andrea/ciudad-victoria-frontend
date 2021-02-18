@@ -54,7 +54,7 @@ export class LeerProductoComponent implements OnInit {
         this.productos = res
       },
       err => {
-        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+        Swal.fire(constantes.error, constantes.error_consultar_producto, constantes.error_swal)
       }
     );
   }
@@ -65,7 +65,7 @@ export class LeerProductoComponent implements OnInit {
         this.categorias = res
       },
       err => {
-        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+        Swal.fire(constantes.error, constantes.error_consultar_categorias, constantes.error_swal)
       }
     );
   }
@@ -76,7 +76,7 @@ export class LeerProductoComponent implements OnInit {
         this.estilos = res
       },
       err => {
-        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+        Swal.fire(constantes.error, constantes.error_consultar_estilos, constantes.error_swal)
       }
     );
   }
@@ -87,7 +87,7 @@ export class LeerProductoComponent implements OnInit {
         this.tallas = res
       },
       err => {
-        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+        Swal.fire(constantes.error, constantes.error_consultar_tallas, constantes.error_swal)
       }
     );
   }
@@ -98,7 +98,7 @@ export class LeerProductoComponent implements OnInit {
         this.colores = res
       },
       err => {
-        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+        Swal.fire(constantes.error, constantes.error_consultar_colores, constantes.error_swal)
       }
     );
   }
@@ -110,7 +110,7 @@ export class LeerProductoComponent implements OnInit {
         this.productos=res;
       },
       err => {
-        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+        Swal.fire(constantes.error, constantes.error_consultar_producto, constantes.error_swal)
       }
     );
   }
@@ -132,6 +132,12 @@ export class LeerProductoComponent implements OnInit {
   }
 
   crearTalla(){
+    for(let i=0; i<this.productoActualizar.tallas.length; i++){
+      if (this.tallaForm==this.productoActualizar.tallas[i].descripcion){
+        Swal.fire(constantes.error, constantes.error_talla_existente, constantes.error_swal);
+        return;
+      }
+    }
     let talla: Talla=new Talla();
     talla.descripcion=this.tallaForm;
     this.productoActualizar.tallas.push(talla);
@@ -142,6 +148,12 @@ export class LeerProductoComponent implements OnInit {
   }
 
   crearColor(){
+    for(let i=0; i<this.productoActualizar.colores.length; i++){
+      if (this.colorForm==this.productoActualizar.colores[i].descripcion){
+        Swal.fire(constantes.error, constantes.error_color_existente, constantes.error_swal);
+        return;
+      }
+    }
     let color: Color=new Color();
     color.descripcion=this.colorForm;
     this.productoActualizar.colores.push(color);
@@ -166,7 +178,7 @@ export class LeerProductoComponent implements OnInit {
           this.modalService.dismissAll();
       },
       err => {
-        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+        Swal.fire(constantes.error, constantes.error_actualizar_producto, constantes.error_swal)
       }
     );
   }
@@ -181,7 +193,7 @@ export class LeerProductoComponent implements OnInit {
       res => {
       },
       err => {
-        Swal.fire(constantes.error, err.error.mensaje, constantes.error_swal)
+        Swal.fire(constantes.error, constantes.error_crear_imagen, constantes.error_swal)
       }
     );
   }
